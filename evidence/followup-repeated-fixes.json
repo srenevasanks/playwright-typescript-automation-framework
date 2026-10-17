@@ -1,0 +1,64 @@
+{
+  "stats": {
+    "startTime": "2026-10-17T15:16:36.195Z",
+    "duration": 167783.53,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "projects": {
+    "chromium": {
+      "passed": 2,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    }
+  },
+  "tests": [
+    {
+      "title": "E2E-01 Register login search cart test order confirmation @regression",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 72114
+        }
+      ]
+    },
+    {
+      "title": "E2E-01 Register login search cart test order confirmation @regression",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 73048
+        }
+      ]
+    },
+    {
+      "title": "CHE-02 Required billing address",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8203
+        }
+      ]
+    },
+    {
+      "title": "CHE-02 Required billing address",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 9388
+        }
+      ]
+    }
+  ]
+}

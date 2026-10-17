@@ -1,0 +1,75 @@
+{
+  "stats": {
+    "startTime": "2026-10-17T15:13:31.721Z",
+    "duration": 66061.312,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  },
+  "projects": {
+    "chromium": {
+      "passed": 1,
+      "failed": 4,
+      "skipped": 0,
+      "flaky": 0
+    }
+  },
+  "tests": [
+    {
+      "title": "E2E-01 Register login search cart test order confirmation @regression",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 17602
+        }
+      ]
+    },
+    {
+      "title": "CAR-06 Empty cart",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 13157
+        }
+      ]
+    },
+    {
+      "title": "CHE-02 Required billing address",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7673
+        }
+      ]
+    },
+    {
+      "title": "CHE-04 Credit card required fields",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 19738
+        }
+      ]
+    },
+    {
+      "title": "CAT-13 Search filter sort combination",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 3377
+        }
+      ]
+    }
+  ]
+}

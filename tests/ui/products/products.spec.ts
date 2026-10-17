@@ -83,11 +83,29 @@ test.describe('Catalog @regression', () => {
     await expect(products.cards).toHaveCount(9);
     await expect(page.getByLabel('Pliers', { exact: true })).not.toBeChecked();
   });
-  test('CAT-13 Search filter sort combination', async ({ products }) => {
+  test('CAT-13 Search filter sort combination', async ({ products, page, product }) => {
     await products.goto();
-    await products.filter('Pliers');
-    await products.sort('price,asc');
+    // Establish the search query before applying the catalog's combined controls.
     await products.search('Pliers');
+    await products.filter('Pliers');
+    const sortedResponse = page.waitForResponse(
+      (response) =>
+        new URL(response.url()).pathname === '/products' &&
+        ['GET', 'QUERY'].includes(response.request().method()),
+    );
+    await products.sort('price,asc');
+    const request = (await sortedResponse).request();
+    const criteria =
+      request.method() === 'QUERY'
+        ? (request.postDataJSON() as Record<string, string>)
+        : Object.fromEntries(new URL(request.url()).searchParams);
+    expect(criteria).toMatchObject({
+      q: 'Pliers',
+      sort: 'price,asc',
+      by_category: product.category.id,
+    });
+    await expect(page.getByLabel('Pliers', { exact: true })).toBeChecked();
+    await expect(page.getByTestId('sort')).toHaveValue('price,asc');
     await expect(products.names).toHaveCount(4);
     const prices = (await products.prices.allTextContents()).map((v) => Number(v.replace('$', '')));
     expect(prices).toEqual([...prices].sort((a, b) => a - b));

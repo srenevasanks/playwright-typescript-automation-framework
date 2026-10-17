@@ -5,7 +5,7 @@ import { readFile } from 'node:fs/promises';
 anonymousTest(
   'E2E-01 Register login search cart test order confirmation @regression',
   async ({ registration, userData, login, products, details, header, checkout, page, api }) => {
-    anonymousTest.setTimeout(90000);
+    anonymousTest.setTimeout(120000);
     await registration.register(userData);
     await login.login(userData);
     await products.goto();
@@ -28,15 +28,35 @@ anonymousTest(
     expect(invoice.payment.payment_method).toBe('cash-on-delivery');
     await page.goto(`/account/invoices/${id}`);
     await expect(page.getByTestId('invoice-number')).toHaveValue(invoice.invoice_number);
-    const pdfStatus = await api.json<Record<string, unknown>>(
-      await api.request.get(`/invoices/${invoice.invoice_number}/download-pdf-status`, {
-        headers: api.headers(token!),
-      }),
-    );
-    await expect(
-      page.getByTestId('download-invoice'),
-      `PDF generation API status: ${JSON.stringify(pdfStatus)}`,
-    ).toBeEnabled({ timeout: 30000 });
+    await expect
+      .poll(
+        async () => {
+          const response = await api.request.get(
+            `/invoices/${invoice.invoice_number}/download-pdf-status`,
+            { headers: api.headers(token!) },
+          );
+          expect(
+            [200, 400],
+            'PDF status accepts only success or its initial lifecycle state',
+          ).toContain(response.status());
+          const state = (await response.json()) as { status: string };
+          expect(['NOT_INITIATED', 'INITIATED', 'IN_PROGRESS', 'COMPLETED']).toContain(
+            state.status,
+          );
+          if (response.status() === 400) expect(state.status).toBe('NOT_INITIATED');
+          return { http: response.status(), status: state.status };
+        },
+        {
+          message: 'Real invoice PDF must finish generation',
+          timeout: 60000,
+          intervals: [2000, 5000],
+        },
+      )
+      .toEqual({ http: 200, status: 'COMPLETED' });
+    // The application polls every 20 seconds; refresh after confirmed completion
+    // to render current readiness without depending on the next interval tick.
+    await page.reload();
+    await expect(page.getByTestId('download-invoice')).toBeEnabled();
     const downloadEvent = page.waitForEvent('download');
     await page.getByTestId('download-invoice').click();
     const download = await downloadEvent;

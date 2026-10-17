@@ -57,6 +57,9 @@ npm run lint
 npm run format:check
 npm run test:smoke -- --project=chromium
 npm run test:regression -- --project=chromium --project=api
+npm run test:serial
+npm run test:parallel
+npm run test:smoke:parallel
 npm run test:api
 npm run test:chromium
 npm run test:firefox
@@ -73,9 +76,13 @@ To validate modest parallel execution:
 
 ```bash
 npm run test:smoke -- --project=chromium --workers=2
+npm run test:parallel
+npm run test:smoke:parallel
 ```
 
 Every test uses independent contexts and data. The config validates WORKERS; CLI overrides must still respect the public-demo limit of two. Do not start concurrent full-suite jobs.
+
+`test:serial` runs the complete Chromium/API suite with one worker; `test:parallel` runs the same suite with two. `test:smoke:parallel` runs the eleven critical Chromium/API smoke checks with two. The full regression retains application-defect assertions; a passing smoke run must not be described as 100% regression success. See [hosted application remediation](docs/hosted-application-blockers.md) for changes that require the application owner's access.
 
 ## API-assisted testing
 

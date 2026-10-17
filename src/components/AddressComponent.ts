@@ -20,6 +20,10 @@ export class AddressComponent {
       await this.page.getByTestId('house_number').fill(address.house_number);
       expect((await lookup).status(), 'Documented postcode lookup status').toBe(200);
     }
+    // Postal code and house number debounce independently. The loader can disappear
+    // after the first response while the second lookup is still scheduled/in flight.
+    // Scope network quiescence to this form boundary before editing manual fields.
+    await this.page.waitForLoadState('networkidle');
     await expect(this.page.getByTestId('postcode-lookup-loading')).not.toBeVisible();
     for (const key of ['street', 'city', 'state'] as const) {
       await this.page.getByTestId(key).fill(address[key]);

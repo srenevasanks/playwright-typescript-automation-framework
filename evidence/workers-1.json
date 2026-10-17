@@ -1,0 +1,697 @@
+{
+  "stats": {
+    "startTime": "2026-10-17T15:19:51.608Z",
+    "duration": 372731.942,
+    "expected": 58,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  },
+  "projects": {
+    "api": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "chromium": {
+      "passed": 50,
+      "failed": 3,
+      "skipped": 0,
+      "flaky": 0
+    }
+  },
+  "tests": [
+    {
+      "title": "API-01 Product list schema @smoke",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 543
+        }
+      ]
+    },
+    {
+      "title": "API-02 Search no results",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 516
+        }
+      ]
+    },
+    {
+      "title": "API-03 Product detail consistency @smoke",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1492
+        }
+      ]
+    },
+    {
+      "title": "API-04 Category filtering",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1438
+        }
+      ]
+    },
+    {
+      "title": "API-05 Unauthorized profile",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 466
+        }
+      ]
+    },
+    {
+      "title": "API-06 Register login profile lifecycle",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2218
+        }
+      ]
+    },
+    {
+      "title": "API-07 Duplicate registration rejected",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1716
+        }
+      ]
+    },
+    {
+      "title": "API-08 Owned cart quantity lifecycle",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4869
+        }
+      ]
+    },
+    {
+      "title": "E2E-01 Register login search cart test order confirmation @regression",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 71342
+        }
+      ]
+    },
+    {
+      "title": "E2E-02 Filter select quantity test order",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 11687
+        }
+      ]
+    },
+    {
+      "title": "E2E-03 Modify cart validate totals remove all",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 11761
+        }
+      ]
+    },
+    {
+      "title": "E2E-04 Update profile logout login verify",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7926
+        }
+      ]
+    },
+    {
+      "title": "MOC-01 Explicit mocked empty search response @mock @regression",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2246
+        }
+      ]
+    },
+    {
+      "title": "INT-01 API product to UI search and cart to API @smoke @regression",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7567
+        }
+      ]
+    },
+    {
+      "title": "ACC-01 Profile and address match API @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4291
+        }
+      ]
+    },
+    {
+      "title": "ACC-02 Profile update persists API",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5653
+        }
+      ]
+    },
+    {
+      "title": "ACC-03 Password confirmation validation",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4983
+        }
+      ]
+    },
+    {
+      "title": "ACC-04 Empty order history",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 18948
+        }
+      ]
+    },
+    {
+      "title": "ACC-05 Favorites UI and API",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8328
+        }
+      ]
+    },
+    {
+      "title": "AUT-01 Valid login @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3272
+        }
+      ]
+    },
+    {
+      "title": "AUT-02 Invalid password",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3825
+        }
+      ]
+    },
+    {
+      "title": "AUT-03 Empty credentials required",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1318
+        }
+      ]
+    },
+    {
+      "title": "AUT-04 Logout invalidates browser session",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6659
+        }
+      ]
+    },
+    {
+      "title": "AUT-05 Authenticated session survives reload",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4530
+        }
+      ]
+    },
+    {
+      "title": "AUT-06 Protected account redirects anonymous user @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1616
+        }
+      ]
+    },
+    {
+      "title": "AUT-07 Independent user contexts",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7210
+        }
+      ]
+    },
+    {
+      "title": "CAR-01 Add single product @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4237
+        }
+      ]
+    },
+    {
+      "title": "CAR-02 Add multiple products",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7196
+        }
+      ]
+    },
+    {
+      "title": "CAR-03 Remove last product",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5670
+        }
+      ]
+    },
+    {
+      "title": "CAR-04 Update quantity and subtotal",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6515
+        }
+      ]
+    },
+    {
+      "title": "CAR-05 Cart total across products",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7144
+        }
+      ]
+    },
+    {
+      "title": "CAR-06 Empty cart",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 13080
+        }
+      ]
+    },
+    {
+      "title": "CAR-07 Continue shopping navigation",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5723
+        }
+      ]
+    },
+    {
+      "title": "CAR-08 Cart persists on reload",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4921
+        }
+      ]
+    },
+    {
+      "title": "CHE-05 Guest checkout identity required @regression",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5282
+        }
+      ]
+    },
+    {
+      "title": "CHE-01 Signed-in address is prefilled",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7882
+        }
+      ]
+    },
+    {
+      "title": "CHE-02 Required billing address",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8542
+        }
+      ]
+    },
+    {
+      "title": "CHE-03 Payment selection supported",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8940
+        }
+      ]
+    },
+    {
+      "title": "CHE-04 Credit card required fields",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 21261
+        }
+      ]
+    },
+    {
+      "title": "CON-01 Select and clear supported contact attachment without submission @upload @regression",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1327
+        }
+      ]
+    },
+    {
+      "title": "CAT-01 Product listing and prices @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1973
+        }
+      ]
+    },
+    {
+      "title": "CAT-02 Category filter",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2262
+        }
+      ]
+    },
+    {
+      "title": "CAT-03 Category and brand filters",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3940
+        }
+      ]
+    },
+    {
+      "title": "CAT-04 Name ascending sort",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2278
+        }
+      ]
+    },
+    {
+      "title": "CAT-05 Name descending sort",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2423
+        }
+      ]
+    },
+    {
+      "title": "CAT-06 Price ascending sort",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2557
+        }
+      ]
+    },
+    {
+      "title": "CAT-07 Price descending sort",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2271
+        }
+      ]
+    },
+    {
+      "title": "CAT-08 Exact product search @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2360
+        }
+      ]
+    },
+    {
+      "title": "CAT-09 Search no results",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2267
+        }
+      ]
+    },
+    {
+      "title": "CAT-10 Clear search",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2975
+        }
+      ]
+    },
+    {
+      "title": "CAT-11 Pagination",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2183
+        }
+      ]
+    },
+    {
+      "title": "CAT-12 Clear category filter",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2643
+        }
+      ]
+    },
+    {
+      "title": "CAT-13 Search filter sort combination",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3927
+        }
+      ]
+    },
+    {
+      "title": "CAT-14 Product details match API @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2736
+        }
+      ]
+    },
+    {
+      "title": "CAT-15 Quantity lower boundary",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2784
+        }
+      ]
+    },
+    {
+      "title": "REG-01 Valid unique registration @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5321
+        }
+      ]
+    },
+    {
+      "title": "REG-02 Required registration fields",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1703
+        }
+      ]
+    },
+    {
+      "title": "REG-03 Invalid registration email",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3393
+        }
+      ]
+    },
+    {
+      "title": "REG-04 Duplicate registration email",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4399
+        }
+      ]
+    },
+    {
+      "title": "REG-05 Underage date of birth",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4385
+        }
+      ]
+    },
+    {
+      "title": "REG-06 Weak password",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2935
+        }
+      ]
+    }
+  ]
+}

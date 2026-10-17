@@ -2,7 +2,11 @@
 
 These findings come from real public-site runs, not mocked responses. Test failures remain active and are not marked skipped or expected-failure. The execution summary states which observations persisted in the final run.
 
-## Application behavior and environment limitations
+## Follow-up status
+
+CHE-02 synchronization and CAT-13 supported control sequencing are corrected in automation. PDF polling now handles initial asynchronous states correctly, but actual generation is still blocked. Full one/two-worker outcomes are in [execution-summary.md](execution-summary.md); owner-side fixes are in [hosted-application-blockers.md](hosted-application-blockers.md). The following table preserves the original observations.
+
+## Original application behavior and environment observations
 
 | Scenario             | Observation                                                                                                                                                                                                  | Classification and practical impact                                                                                                                                                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
