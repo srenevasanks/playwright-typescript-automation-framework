@@ -35,7 +35,7 @@ See [hosted-application-blockers.md](hosted-application-blockers.md) for owner-s
 
 ## Included reports and full-run evidence
 
-The `reports/` folder contains one [Playwright HTML report](../reports/playwright/index.html) and one [Allure report](../reports/allure/index.html), both from the eleven-case two-worker smoke snapshot. These reports show 11/11 smoke, not the full regression.
+The `reports/` folder contains one [Playwright HTML report](https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/) and one [Allure report](https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/), both from the eleven-case two-worker smoke snapshot. These reports show 11/11 smoke, not the full regression.
 
 Full regression outcomes are preserved in the sanitized runner records [workers-1.json](../evidence/workers-1.json) and [workers-2.json](../evidence/workers-2.json), alongside [parallel-smoke-followup.json](../evidence/parallel-smoke-followup.json). Earlier diagnostic reports are archived outside the source project; duplicate generated report folders are not published in this repository. Local new runs still generate reports at the standard configured paths.
 

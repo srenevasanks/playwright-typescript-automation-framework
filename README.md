@@ -4,7 +4,7 @@ I built this project to test a complete shopping journey on [Practice Software T
 
 My focus was on tests I could run, investigate, and maintain: clear page objects, isolated test data, useful assertions, and reports that explain a failure without having to rerun everything first.
 
-Reports are included in [`reports/playwright`](reports/playwright) and [`reports/allure`](reports/allure).
+**[Open Playwright HTML report](https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/) · [Open Allure report](https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/)**
 
 ## Latest execution
 
@@ -117,7 +117,7 @@ Playwright writes `playwright-report/index.html` automatically after execution. 
 
 Failures retain screenshots and videos. Tracing starts on the first retry; for a focused investigation use `--retries=1`, then open the trace with `npx playwright show-trace path/to/trace.zip`.
 
-The `reports/` folder contains one Playwright HTML report and one Allure report from the same smoke snapshot. Generated credentials and machine identifiers were redacted; results and timings are unchanged. To view the included snapshots, serve the repository locally with `npx http-server .` and open `/reports/playwright/` or `/reports/allure/`. New test runs generate reports in the usual output directories described above.
+The `reports/` folder contains one Playwright HTML report and one Allure report from the same smoke snapshot. Generated credentials and machine identifiers were redacted; results and timings are unchanged. The links at the top open each report directly in the browser. GitHub Pages serves only these report files; there is no separate portfolio or landing page. For local viewing, serve the repository with `npx http-server .` and open `/reports/playwright/` or `/reports/allure/`. New test runs generate reports in the usual output directories described above.
 
 ## GitHub Actions
 
