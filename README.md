@@ -55,7 +55,7 @@ tests/integration/     real UI/API comparisons
 tests/e2e/             complete shopping and account journeys
 docs/                  architecture, strategy, coverage and execution notes
 evidence/              sanitized run summaries and screenshots
-scripts/               result summary and optional public-report preparation
+scripts/               sanitized execution summary helper
 ```
 
 The catalog is also the homepage, so it uses one page object. I kept the structure close to the application instead of adding a base class for every interaction.
@@ -123,7 +123,7 @@ The `reports/` folder contains one Playwright HTML report and one Allure report 
 
 Pushes and pull requests run type checking, linting, and Chromium + API smoke with **one worker**. A manual workflow input runs the broader Chromium + API regression. The workflow installs dependencies and Chromium, generates both reports, and uploads reports and failure artifacts for seven days, including when tests fail. Failures keep the job red.
 
-There is no scheduled traffic against the demo. CI reports belong to that particular workflow run; they do not silently replace the curated public snapshot. Secrets for a separately authorized environment should go in GitHub Actions secrets, not `.env` files in Git.
+There is no scheduled traffic against the demo. CI reports belong to that particular workflow run; they do not replace the checked-in report snapshot. Secrets for a separately authorized environment should go in GitHub Actions secrets, not `.env` files in Git.
 
 ## Browser coverage and current limits
 
