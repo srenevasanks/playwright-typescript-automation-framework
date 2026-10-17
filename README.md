@@ -4,11 +4,11 @@ I built this project to test a complete shopping journey on [Practice Software T
 
 My focus was on tests I could run, investigate, and maintain: clear page objects, isolated test data, useful assertions, and reports that explain a failure without having to rerun everything first.
 
-**[View reports](https://srenevasanks.github.io/playwright-typescript-automation-framework/) · [Playwright HTML](https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/) · [Allure](https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/)**
+Reports are included in [`reports/playwright`](reports/playwright) and [`reports/allure`](reports/allure).
 
 ## Latest execution
 
-The published reports are from the same real **Chromium + API smoke run, using two workers**. All **11 tests passed**, with no retries, skips, or flaky results. The snapshot was recorded on **17 October 2026** and took **22.7 seconds**. These are saved execution results, not a live status indicator.
+The included reports are from the same real **Chromium + API smoke run, using two workers**. All **11 tests passed**, with no retries, skips, or flaky results. The snapshot was recorded on **17 October 2026** and took **22.7 seconds**. These are saved execution results, not a live status indicator.
 
 The complete suite has **61 scenarios**. I ran it with both one and two workers:
 
@@ -117,9 +117,7 @@ Playwright writes `playwright-report/index.html` automatically after execution. 
 
 Failures retain screenshots and videos. Tracing starts on the first retry; for a focused investigation use `--retries=1`, then open the trace with `npx playwright show-trace path/to/trace.zip`.
 
-The [public report page](https://srenevasanks.github.io/playwright-typescript-automation-framework/) contains exactly one Playwright report and one Allure report from the same smoke snapshot. Generated passwords, synthetic email addresses, tokens, local paths, and machine names are removed before publication; outcomes and timings are unchanged. The source repository keeps the test code and sanitized evidence. The checked-in `reports/` folder has just this one pair, so the snapshot comes with a clone too. GitHub Pages serves the same files from the `gh-pages` branch.
-
-See [report publication notes](docs/reports.md) for the snapshot scope, redaction process, and how it differs from CI artifacts.
+The `reports/` folder contains one Playwright HTML report and one Allure report from the same smoke snapshot. Generated credentials and machine identifiers were redacted; results and timings are unchanged. To view the included snapshots, serve the repository locally with `npx http-server .` and open `/reports/playwright/` or `/reports/allure/`. New test runs generate reports in the usual output directories described above.
 
 ## GitHub Actions
 
