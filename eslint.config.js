@@ -4,6 +4,7 @@ module.exports = tseslint.config(
   {
     ignores: [
       'node_modules/**',
+      'reports/**',
       'playwright-report*/**',
       'test-results*/**',
       'allure-*/**',
