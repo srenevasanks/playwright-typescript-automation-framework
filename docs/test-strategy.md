@@ -1,0 +1,15 @@
+# Test strategy
+
+The suite targets the hosted training application and its documented API. Phase 0 established normal access before implementation. Every scenario gets an isolated browser context. Mutation scenarios operate on UUID accounts and owned carts/favorites. No seeded shared login, admin cleanup, real payment credentials or security-control bypass is used.
+
+The matrix maps 61 test definitions to business outcomes: seven authentication, six registration, fifteen catalog, eight cart, five checkout, five account, eight API, one real integration, four end-to-end, one explicit mocked example and one contact attachment selection. The contact case was added after the initial 60-scenario plan when advanced exploration verified the file input. Tags are @smoke for a small critical set, @regression for all scenarios, @upload for file selection and @mock for the intercepted example. Mock results are never backend evidence.
+
+Positive tests assert product identities, current prices, account data and persisted invoices. Negative tests assert required-field errors and rejected invalid input. Boundary tests cover underage birth dates, weak passwords and quantity minimum. Totals are calculated in integer cents from current API prices. API comparisons use equivalent name, description, unit price, product ID and quantity fields.
+
+Web-first assertions and awaited network responses provide synchronization. There are no arbitrary sleeps, forced clicks or absolute XPath selectors. Stable data-test hooks and accessible names identify controls. HTML, JSON and Allure capture real runner outcomes; failures retain screenshots and videos, and the first retry records a trace. Diagnostics attach console errors, failed network requests and HTTP error status/path without request headers or response bodies.
+
+Run Chromium smoke with one worker before regression. Then execute API and the remaining UI/E2E integration scenarios. Validate a two-worker smoke subset and Firefox/WebKit smoke; run wider browser regression only when justified. See execution-summary.md for the exact observed scope—configuration alone is not a cross-browser result.
+
+Failure triage distinguishes automation defects, application defects, test-data errors, browser differences, unsupported assumptions and environment/access restrictions. Fix locator/data/synchronization defects using observable evidence. Retain assertions for genuine application failures. No conditional skipping or expected-failure annotations hide failures.
+
+The app has guest checkout, billing lookup and simulated payment methods. No separate shipping selector or native dialog exists in the inspected shopping flow. The Contact file input accepts zero-byte text files; the suite verifies selection metadata and clearing without submitting a message. This is not proof of server-side upload. PDF coverage must be backed by an actual download; failed generation remains reported as a blocker. Avoid contact form/email delivery, destructive operations and unnecessary traffic on shared infrastructure.

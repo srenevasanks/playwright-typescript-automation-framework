@@ -1,0 +1,55 @@
+name: Playwright public-demo smoke
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      regression:
+        description: Run Chromium regression instead of smoke
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: playwright-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CI: true
+      WORKERS: 1
+      BASE_URL: https://practicesoftwaretesting.com
+      API_URL: https://api.practicesoftwaretesting.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run typecheck
+      - run: npm run lint
+      - name: Run approved bounded suite
+        run: |
+          if [ "${{ inputs.regression }}" = "true" ]; then
+            npm run test:regression -- --project=chromium --project=api
+          else
+            npm run test:smoke -- --project=chromium --project=api
+          fi
+      - name: Generate Allure report
+        if: always()
+        run: npm run allure:generate
+      - name: Preserve reports and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results-${{ github.run_attempt }}
+          retention-days: 7
+          path: |
+            playwright-report/
+            test-results/
+            allure-results/
+            allure-report/
