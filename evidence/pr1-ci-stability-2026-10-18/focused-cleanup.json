@@ -1,0 +1,33 @@
+{
+  "source": "focused four-case follow-up, actual runtime attachments",
+  "attempts": [
+    {
+      "test": "E2E-01 Register login search cart test order confirmation @regression",
+      "project": "chromium",
+      "status": 404,
+      "completed": true,
+      "durationMs": 449,
+      "cartIdSha256": "45c279e44dc526a8e1eac4dc790389c8590b3f04375129cf4bc15fdc9f70e7dd"
+    },
+    {
+      "test": "CHE-03 Payment selection supported",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 501,
+      "cartIdSha256": "3592c8eceaefe16f535aa0b2474b426e776da7dbca4ef84458fbcddef84ac989"
+    },
+    {
+      "test": "CHE-04 Credit card required fields",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 475,
+      "cartIdSha256": "bc78df145502b6424ba7103e118c969d5c209f20216998fe2590ba8211742ecd"
+    }
+  ],
+  "localCapacity": {
+    "logicalCpus": 12,
+    "totalMemoryGiB": 31.75
+  }
+}

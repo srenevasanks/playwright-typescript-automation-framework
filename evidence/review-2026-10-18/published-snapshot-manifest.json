@@ -1,0 +1,235 @@
+{
+  "scope": "historical smoke",
+  "date": "2026-10-17",
+  "resultsSource": "evidence/parallel-smoke-followup.json",
+  "urls": [
+    "https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/",
+    "https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/"
+  ],
+  "files": [
+    {
+      "path": "reports/.nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/allure/assets/favicon-BDLHVmV7.ico",
+      "sha256": "4ad711c50b7f12a981f768129681062503812b6d09b81f5f77a76a159b7d2030"
+    },
+    {
+      "path": "reports/allure/assets/index-CqG5t6J2.js",
+      "sha256": "9ba7756db061e2c33ee39ec3ed23b8072fd1fa9933b7153ea77f9fed844ca634"
+    },
+    {
+      "path": "reports/allure/data/attachments/42789f4a6d7b220b.txt",
+      "sha256": "25b27029362c63cf6a4d02c9a86c087aad46aa0336f7f4c2db70f4cd0eba78d0"
+    },
+    {
+      "path": "reports/allure/data/attachments/56486e1359a0683.txt",
+      "sha256": "22a436d2aa66a5f9a5dac151afeb0df24518c1104622a104be1dd807b5119fc6"
+    },
+    {
+      "path": "reports/allure/data/attachments/60c3d49e32c85fba.txt",
+      "sha256": "a2fc360b52b0f7cb716e693b6dd3d07b0c53d4121255d30cf4ffb957267beda0"
+    },
+    {
+      "path": "reports/allure/data/attachments/91c932960dd613e7.txt",
+      "sha256": "75f6656a6cdc900894992f8b702633f0c7acbad979d122b938b30adb289cbc81"
+    },
+    {
+      "path": "reports/allure/data/attachments/926b54ca36424727.txt",
+      "sha256": "809292a6fa990c40617dd43aac9f5e265144bc3f71f0fe3e1f8802abd1e7d57f"
+    },
+    {
+      "path": "reports/allure/data/attachments/bf5bdde87e202acc.txt",
+      "sha256": "7786093f07c1b662350c7346b17d244901b6adbcb33dd36fb9e5ffdddb47f8bb"
+    },
+    {
+      "path": "reports/allure/data/attachments/c478b5edb2eca2ab.txt",
+      "sha256": "9085c3d25fb3b1ec4a167bc3c4ae42f098ae0e054c99d8ac1e63d252d5dbb750"
+    },
+    {
+      "path": "reports/allure/data/attachments/e90cb74eaa187347.txt",
+      "sha256": "22a436d2aa66a5f9a5dac151afeb0df24518c1104622a104be1dd807b5119fc6"
+    },
+    {
+      "path": "reports/allure/data/attachments/ed24eb0aa1a02cc6.txt",
+      "sha256": "22a436d2aa66a5f9a5dac151afeb0df24518c1104622a104be1dd807b5119fc6"
+    },
+    {
+      "path": "reports/allure/data/behaviors.csv",
+      "sha256": "7a86a79cfdcbd52a76947358756ece618c58714dbcbc55d74ad4a8c71f4e5121"
+    },
+    {
+      "path": "reports/allure/data/behaviors.json",
+      "sha256": "07326ad85ccbd947440dd6e24add01d04a7497f303bd54a5fdc669e129102d46"
+    },
+    {
+      "path": "reports/allure/data/categories.csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reports/allure/data/categories.json",
+      "sha256": "7e5dc16b0c4ae6a41675e94f5f0514b2c3a794d09d333848bbdba6faadf2d625"
+    },
+    {
+      "path": "reports/allure/data/packages.json",
+      "sha256": "1ef411170dab8b836bf49d134a042f9334c04cd102c8b2453c000ebd5208696f"
+    },
+    {
+      "path": "reports/allure/data/suites.csv",
+      "sha256": "8e29ccd25de7aa83ac66f80393c0ce2005c58347d35cfffb2805d38a115945b1"
+    },
+    {
+      "path": "reports/allure/data/suites.json",
+      "sha256": "5c9291e2f07ccbbdf87978f304483967e33dcbbfdb59d86fc3d4809bf2bf3d95"
+    },
+    {
+      "path": "reports/allure/data/test-cases/181419d0e5e2ae0.json",
+      "sha256": "c14790244d8df1129806a1a282975a066136f9a6a00d9ababcf8651dee2d5adb"
+    },
+    {
+      "path": "reports/allure/data/test-cases/203d6ab5f0a615f6.json",
+      "sha256": "bb6f2a00f25e162c49c4dc0064ec61c633f5d6b8316d79fdf2cfa60fd4e479c0"
+    },
+    {
+      "path": "reports/allure/data/test-cases/23efe4e4e6d66891.json",
+      "sha256": "f9bbbe7a69d226ce6c9ab6e2450246c860a4c21eda7a78098187069bc4c00d47"
+    },
+    {
+      "path": "reports/allure/data/test-cases/326b0fa628501ea.json",
+      "sha256": "1cdd920760e96a35de1ab2be3bf3eb6987fbe1b36234219478f510889330c903"
+    },
+    {
+      "path": "reports/allure/data/test-cases/33239adf92e2090a.json",
+      "sha256": "4128450bfcc109fc1c00d8efcd08f2142dab84d2f12187470ad60ad3351725de"
+    },
+    {
+      "path": "reports/allure/data/test-cases/3b53246dbd1eb1fb.json",
+      "sha256": "c84bf2fe40df704a684f69843fb2b602831396e89a5ba94d7e1215f47460ec3d"
+    },
+    {
+      "path": "reports/allure/data/test-cases/62dd208701cd5ae3.json",
+      "sha256": "c3adf64b353fdd39b2720bd8d1ed1d8670a5a2a1044769029541c082d267242e"
+    },
+    {
+      "path": "reports/allure/data/test-cases/7b2948fca10e3bb8.json",
+      "sha256": "537c4d11ff840cb3d843ae800d8e4499f4c8e99cf0a5623dbb4cb69d9b4eb3a3"
+    },
+    {
+      "path": "reports/allure/data/test-cases/8eba152fa251b2c3.json",
+      "sha256": "8335721dc363cdc78eead9233a76459c5593c726872919373567e2ccb93d5399"
+    },
+    {
+      "path": "reports/allure/data/test-cases/a700ca96f8bf9ea3.json",
+      "sha256": "d85f49abe3ae95f98d0083cac6718a621b8a34c416e530880b73f12f0b01079a"
+    },
+    {
+      "path": "reports/allure/data/test-cases/ba1e5e905d985830.json",
+      "sha256": "71a2eba0b94a1e1196261641071d54d5ca339ff650a50014546562e60f1220e4"
+    },
+    {
+      "path": "reports/allure/data/timeline.json",
+      "sha256": "6972143a30e328ea5fd42d25c00fcf94daf4aa13f502cc24a88e04b54f687071"
+    },
+    {
+      "path": "reports/allure/export/influxDbData.txt",
+      "sha256": "5bcbe986c49fe0b097da371b9c883824f56fa76b54a023177deca9b635bc0e9e"
+    },
+    {
+      "path": "reports/allure/export/mail.html",
+      "sha256": "75e9f8b5e54a24efec6ef438c153c771d8821d16a6115d7ecda90f777aaf7b14"
+    },
+    {
+      "path": "reports/allure/export/prometheusData.txt",
+      "sha256": "56ae75f3772a1045de8ff4c634cda8845e32dc0c91e91a54f1a2be20a6d3e465"
+    },
+    {
+      "path": "reports/allure/history/categories-trend.json",
+      "sha256": "484355208c699401b2e1f159d9e8d6543d486fa5349671a874d61dbac79a85cf"
+    },
+    {
+      "path": "reports/allure/history/duration-trend.json",
+      "sha256": "73d5874576bfeb42e9d783cfd57b752ad0a43005a639f8cc3754ef6b8dc1101d"
+    },
+    {
+      "path": "reports/allure/history/history-trend.json",
+      "sha256": "d296a4f279d962eb4f7bd16e9373bd825def82cadba55a2aea8e555824d99063"
+    },
+    {
+      "path": "reports/allure/history/history.json",
+      "sha256": "49668c5c7b6b7ff14022230c4a64edac0bb8e823e41e962cfb818d1478760c81"
+    },
+    {
+      "path": "reports/allure/history/retry-trend.json",
+      "sha256": "c5aada6a6a737682d24a88485b94ab74159df3d886df4f17f658ea6857efec0d"
+    },
+    {
+      "path": "reports/allure/index.html",
+      "sha256": "75128f21613fb58087aad31e7546a39d92abca184f12206fdbd55090447b99b1"
+    },
+    {
+      "path": "reports/allure/widgets/behaviors.json",
+      "sha256": "ea80efd8e3a1603e094921b25de05456c6ed63612efb924d3538d2579bf06af2"
+    },
+    {
+      "path": "reports/allure/widgets/categories-trend.json",
+      "sha256": "484355208c699401b2e1f159d9e8d6543d486fa5349671a874d61dbac79a85cf"
+    },
+    {
+      "path": "reports/allure/widgets/categories.json",
+      "sha256": "090d4dcc718619f581456b828b8575597846f214734feef5fa97c7c77f14949a"
+    },
+    {
+      "path": "reports/allure/widgets/duration-trend.json",
+      "sha256": "73d5874576bfeb42e9d783cfd57b752ad0a43005a639f8cc3754ef6b8dc1101d"
+    },
+    {
+      "path": "reports/allure/widgets/duration.json",
+      "sha256": "3725101b6e09a54c4d1b089859da29cb35d2b913592518b8a755c0aeb2898140"
+    },
+    {
+      "path": "reports/allure/widgets/environment.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "reports/allure/widgets/executors.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "reports/allure/widgets/globals.json",
+      "sha256": "4b6b44beca9a282295af091a79e46c2a681e7fbdf803f43a3adabc1704d10b21"
+    },
+    {
+      "path": "reports/allure/widgets/history-trend.json",
+      "sha256": "d296a4f279d962eb4f7bd16e9373bd825def82cadba55a2aea8e555824d99063"
+    },
+    {
+      "path": "reports/allure/widgets/launch.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "reports/allure/widgets/retry-trend.json",
+      "sha256": "c5aada6a6a737682d24a88485b94ab74159df3d886df4f17f658ea6857efec0d"
+    },
+    {
+      "path": "reports/allure/widgets/severity.json",
+      "sha256": "29dd0cac02efc1a5a140fc2aa8184f4cc3b0dddeaa8d7dda66ce985efaab31a9"
+    },
+    {
+      "path": "reports/allure/widgets/status-chart.json",
+      "sha256": "3725101b6e09a54c4d1b089859da29cb35d2b913592518b8a755c0aeb2898140"
+    },
+    {
+      "path": "reports/allure/widgets/suites.json",
+      "sha256": "e28bb0c73b9745a05828ba2f740846866634b864300e260655b419927fb78b5c"
+    },
+    {
+      "path": "reports/allure/widgets/summary.json",
+      "sha256": "6f374e93829b9891997c0f1cbdf4b993ca2122dda3de6b8f9f6f1db30752e8f1"
+    },
+    {
+      "path": "reports/playwright/index.html",
+      "sha256": "0c659b1f9046235e8756bedae2f4cd1b99a66ae395cb04be8c7db723a1f10290"
+    }
+  ]
+}

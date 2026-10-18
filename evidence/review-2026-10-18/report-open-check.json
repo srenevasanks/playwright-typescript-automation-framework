@@ -1,0 +1,53 @@
+{
+  "checkedUtc": "2026-10-18T04:46:11.440Z",
+  "checks": [
+    {
+      "label": "current smoke Playwright",
+      "path": "playwright-report-review-smoke/",
+      "status": 200,
+      "title": "Playwright Test Report",
+      "rendered": true,
+      "overview": "All11\nPassed11\nFailed0\nFlaky0\nSkipped0\n10/18/2026, 10:03:39 AM\nTotal time: 21.2s\napi/toolshop.spec.ts\nDocumented API @regression › API-01 Product list schema @smokeapiregressionsmoke\n571ms\napi/toolshop.spec.ts:3\nDocumented API @regression › API-03 Product detail consistency @smokeapiregressionsmoke\n1.5s\napi/toolshop.spec.ts:19\nintegration/product-cart.spec.ts\nINT-01 API product to UI search and cart to API @smoke @regressionchromiumsmokeregressio"
+    },
+    {
+      "label": "current smoke Allure",
+      "path": "allure-report-review-smoke/",
+      "status": 200,
+      "title": "Allure Report",
+      "rendered": true,
+      "overview": "Allure\nOverview\nCategories\nSuites\nBehaviors\nPackages\nGraphs\nTimeline\nDark theme\nen\nLanguage\nCollapse\nAllure Report 10/18/202610:03:40 - 10:04:00 (20s 072ms)\n11\ntest cases\n100%\nSuites2 items total\nchromium\n9\napi\n2\nShow all\nEnvironment\nThere are no environment variables\nFeatures by stories11 items total\nshow all\nTrend\nThere is nothing to show\nCategories0 items total\nShow all\nExecutors\nThere is no information about tests executors"
+    },
+    {
+      "label": "current regression Playwright",
+      "path": "playwright-report-review-final-regression/",
+      "status": 200,
+      "title": "Playwright Test Report",
+      "rendered": true,
+      "overview": "All61\nPassed57\nFailed4\nFlaky0\nSkipped0\n10/18/2026, 10:09:38 AM\nTotal time: 3.2m\nui/checkout/checkout.spec.ts\nCheckout @regression › CHE-03 Payment selection supportedchromiumregression\n30.2s\nui/checkout/checkout.spec.ts:26\nView Trace\nCheckout @regression › CHE-04 Credit card required fieldschromiumregression\n21.8s\nui/checkout/checkout.spec.ts:39\nView Trace\nCheckout @regression › CHE-01 Signed-in address is prefilledchromiumregression\n8.1s\nui/chec"
+    },
+    {
+      "label": "current regression Allure",
+      "path": "allure-report-review-final-regression/",
+      "status": 200,
+      "title": "Allure Report",
+      "rendered": true,
+      "overview": "Allure\nOverview\nCategories\nSuites\nBehaviors\nPackages\nGraphs\nTimeline\nDark theme\nen\nLanguage\nCollapse\nAllure Report 10/18/202610:09:39 - 10:12:52 (3m 12s)\n61\ntest cases\n93.44%\nSuites2 items total\nchromium\n4\n49\napi\n8\nShow all\nEnvironment\nThere are no environment variables\nFeatures by stories61 items total\nshow all\nTrend\nThere is nothing to show\nCategories1 item total\nProduct defects\n4\nShow all\nExecutors\nThere is no information about tests executors"
+    },
+    {
+      "label": "published historical Playwright",
+      "path": "https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/",
+      "status": 200,
+      "title": "Playwright Test Report",
+      "rendered": true,
+      "overview": "All11\nPassed11\nFailed0\nFlaky0\nSkipped0\n10/17/2026, 9:00:49 PM\nTotal time: 22.7s\napi/toolshop.spec.ts\nDocumented API @regression › API-01 Product list schema @smokeapiregressionsmoke\n562ms\napi/toolshop.spec.ts:3\nDocumented API @regression › API-03 Product detail consistency @smokeapiregressionsmoke\n1.5s\napi/toolshop.spec.ts:19\nintegration/product-cart.spec.ts\nINT-01 API product to UI search and cart to API @smoke @regressionchromiumsmokeregression"
+    },
+    {
+      "label": "published historical Allure",
+      "path": "https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/",
+      "status": 200,
+      "title": "Allure Report",
+      "rendered": true,
+      "overview": "Allure\nOverview\nCategories\nSuites\nBehaviors\nPackages\nGraphs\nTimeline\nDark theme\nen\nLanguage\nCollapse\nAllure Report 10/17/202621:00:50 - 21:01:11 (21s 388ms)\n11\ntest cases\n100%\n\nLoading...\n\nLoading...\n\nLoading...\n\nLoading...\n\nLoading...\n\nLoading..."
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "scope": "smoke",
+  "globalErrorCount": 0,
+  "stats": {
+    "startTime": "2026-10-18T04:47:39.902Z",
+    "duration": 55472.918,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "execution": {
+    "configuredWorkers": 1,
+    "peakConcurrentAttempts": 1,
+    "actualWorkers": 1,
+    "projects": [
+      {
+        "name": "api",
+        "retries": 0
+      },
+      {
+        "name": "chromium",
+        "retries": 0
+      },
+      {
+        "name": "firefox",
+        "retries": 0
+      },
+      {
+        "name": "webkit",
+        "retries": 0
+      }
+    ]
+  },
+  "projects": {
+    "api": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "chromium": {
+      "passed": 7,
+      "failed": 2,
+      "skipped": 0,
+      "flaky": 0
+    }
+  },
+  "tests": [
+    {
+      "title": "API-01 Product list schema @smoke",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 463
+        }
+      ]
+    },
+    {
+      "title": "API-03 Product detail consistency @smoke",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1274
+        }
+      ]
+    },
+    {
+      "title": "INT-01 API product to UI search and cart to API @smoke @regression",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5465
+        }
+      ]
+    },
+    {
+      "title": "ACC-01 Profile and address match API @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3367
+        }
+      ]
+    },
+    {
+      "title": "AUT-01 Valid login @smoke",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 14720
+        }
+      ]
+    },
+    {
+      "title": "AUT-06 Protected account redirects anonymous user @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1544
+        }
+      ]
+    },
+    {
+      "title": "CAR-01 Add single product @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3828
+        }
+      ]
+    },
+    {
+      "title": "CAT-01 Product listing and prices @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1425
+        }
+      ]
+    },
+    {
+      "title": "CAT-08 Exact product search @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1726
+        }
+      ]
+    },
+    {
+      "title": "CAT-14 Product details match API @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2397
+        }
+      ]
+    },
+    {
+      "title": "REG-01 Valid unique registration @smoke",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 16001
+        }
+      ]
+    }
+  ],
+  "github": {
+    "id": 39098291041,
+    "url": "https://github.com/srenevasanks/playwright-typescript-automation-framework/actions/runs/39098291041",
+    "commit": "16784b524026ad7cf975b4e54ff6b6c6bc72b020",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "failure",
+    "created": "2026-10-18T04:47:05Z",
+    "jobs": [
+      {
+        "name": "smoke",
+        "status": "completed",
+        "conclusion": "failure",
+        "started": "2026-10-18T04:47:07Z",
+        "finished": "2026-10-18T04:48:42Z",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Record tool versions",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run npx playwright install --with-deps chromium",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run npm run typecheck",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run npm run lint",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run npm run format:check",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run approved bounded suite",
+            "status": "completed",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Summarize actual execution scope",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Generate Allure report",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preserve reports and diagnostics",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ]
+  },
+  "hostedAccessEvidence": [
+    {
+      "title": "AUT-01 Valid login @smoke",
+      "project": "chromium",
+      "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByTestId('nav-menu')\nExpected: visible\nTimeout: 12000ms\nError: element(s) not found\n\n",
+      "securityVerificationInSnapshot": true,
+      "responses": [
+        {
+          "url": "https://practicesoftwaretesting.com/account",
+          "status": 403,
+          "headers": {
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4c4e85f9dd2cc3a-ORD",
+            "content-type": "text/html; charset=UTF-8",
+            "server": "cloudflare"
+          }
+        }
+      ]
+    },
+    {
+      "title": "REG-01 Valid unique registration @smoke",
+      "project": "chromium",
+      "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByTestId('login-submit')\nExpected: visible\nTimeout: 12000ms\nError: element(s) not found\n\n",
+      "securityVerificationInSnapshot": true,
+      "responses": [
+        {
+          "url": "https://practicesoftwaretesting.com/auth/login",
+          "status": 403,
+          "headers": {
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4c4e90b9966aa8f-ORD",
+            "content-type": "text/html; charset=UTF-8",
+            "server": "cloudflare"
+          }
+        },
+        {
+          "url": "https://practicesoftwaretesting.com/auth/login",
+          "status": 403,
+          "headers": {
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4c4e90e29bcaa8f-ORD",
+            "content-type": "text/html; charset=UTF-8",
+            "server": "cloudflare"
+          }
+        }
+      ]
+    }
+  ],
+  "browserEnvironments": [
+    {
+      "browser": "chromium",
+      "version": "156.0.8078.4",
+      "node": "v24.21.0",
+      "platform": "linux",
+      "project": "chromium",
+      "workerIndex": 1,
+      "parallelIndex": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "headless": true
+    },
+    {
+      "browser": "chromium",
+      "version": "156.0.8078.4",
+      "node": "v24.21.0",
+      "platform": "linux",
+      "project": "chromium",
+      "workerIndex": 2,
+      "parallelIndex": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "headless": true
+    }
+  ],
+  "allureCounts": {
+    "failed": 2,
+    "broken": 0,
+    "skipped": 0,
+    "passed": 9,
+    "unknown": 0,
+    "total": 11
+  }
+}

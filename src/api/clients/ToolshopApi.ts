@@ -9,6 +9,14 @@ import type {
   UserData,
 } from '../models/models';
 export class ToolshopApi {
+  readonly cartCleanupAttempts: {
+    cartId: string;
+    status: number | null;
+    completed: boolean;
+    durationMs: number;
+    failureKind?: 'transport' | 'status-assertion';
+    errorCode?: string;
+  }[] = [];
   constructor(readonly request: APIRequestContext) {}
   async address(input: Address): Promise<Address> {
     const result = await this.json<{ street: string; city: string; state: string }>(
@@ -79,7 +87,28 @@ export class ToolshopApi {
     return this.json(await this.request.get(`/carts/${id}`));
   }
   async deleteCart(id: string): Promise<void> {
-    const r = await this.request.delete(`/carts/${id}`);
-    expect([204, 404], 'Owned cart cleanup status').toContain(r.status());
+    const started = performance.now();
+    const attempt: (typeof this.cartCleanupAttempts)[number] = {
+      cartId: id,
+      status: null,
+      completed: false,
+      durationMs: 0,
+    };
+    this.cartCleanupAttempts.push(attempt);
+    try {
+      const r = await this.request.delete(`/carts/${id}`);
+      attempt.status = r.status();
+      expect([204, 404], 'Owned cart cleanup status').toContain(r.status());
+      attempt.completed = true;
+    } catch (error) {
+      attempt.failureKind = attempt.status === null ? 'transport' : 'status-assertion';
+      if (error instanceof Error) {
+        const code = error.message.match(/\b(E[A-Z_]{3,})\b/)?.[1];
+        if (code) attempt.errorCode = code;
+      }
+      throw error;
+    } finally {
+      attempt.durationMs = Math.round(performance.now() - started);
+    }
   }
 }

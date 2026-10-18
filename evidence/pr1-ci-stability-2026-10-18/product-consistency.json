@@ -1,0 +1,28 @@
+{
+  "source": "test-results-pr1-serial/integration-product-cart-I-d7bf7-art-to-API-smoke-regression-chromium/trace.zip",
+  "cartResponse": {
+    "message": "The selected product id is invalid.",
+    "errors": {
+      "product_id": [
+        "The selected product id is invalid."
+      ]
+    }
+  },
+  "status": 422,
+  "rejectedProductIdSha256": "7949aad38c5cb9bf7a1df12217c3b91dadac58a7fb01ad7c91358d3915724dc4",
+  "sameProductServedEarlier": true,
+  "servedObservations": [
+    {
+      "time": "2026-10-18T05:00:27.406Z",
+      "method": "GET",
+      "matchesRejectedProduct": true
+    },
+    {
+      "time": "2026-10-18T05:00:25.033Z",
+      "method": "GET",
+      "matchesRejectedProduct": true
+    }
+  ],
+  "rejectedAt": "2026-10-18T05:00:28.227Z",
+  "rootCause": "Data changed or became inconsistent between responses; exact server/cache/reset cause unconfirmed."
+}

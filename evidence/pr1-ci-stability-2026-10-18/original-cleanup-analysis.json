@@ -1,0 +1,17 @@
+{
+  "source": "test-results-review-final-regression CHE-03 trace; original 57/61 passing run",
+  "uiCreatedCartCount": 1,
+  "deleteAttempts": [
+    {
+      "started": "2026-10-18T04:41:56.354Z",
+      "matchesUiCreatedCart": true,
+      "cartIdSha256": "bc7d05a91481e3b0719eca9d52fd7228fefc21c1b66aa4a7260117c23d8055af",
+      "traceResponseStatus": -1,
+      "httpResponseReceived": false
+    }
+  ],
+  "requestDurationMs": 21028,
+  "configuredRequestTimeoutMs": 30000,
+  "errorCode": "ETIMEDOUT",
+  "note": "Trace -1 is a sentinel for no response, not an HTTP status. The original runner error is connect ETIMEDOUT; status validation was never reached."
+}

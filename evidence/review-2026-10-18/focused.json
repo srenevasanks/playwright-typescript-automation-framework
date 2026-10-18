@@ -1,0 +1,78 @@
+{
+  "scope": "focused-regression",
+  "globalErrorCount": 0,
+  "stats": {
+    "startTime": "2026-10-18T04:30:33.300Z",
+    "duration": 123537.17300000001,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  },
+  "execution": {
+    "configuredWorkers": 1,
+    "peakConcurrentAttempts": 1,
+    "actualWorkers": 1,
+    "projects": [
+      {
+        "name": "api",
+        "retries": 0
+      },
+      {
+        "name": "chromium",
+        "retries": 0
+      },
+      {
+        "name": "firefox",
+        "retries": 0
+      },
+      {
+        "name": "webkit",
+        "retries": 0
+      }
+    ]
+  },
+  "projects": {
+    "chromium": {
+      "passed": 0,
+      "failed": 3,
+      "skipped": 0,
+      "flaky": 0
+    }
+  },
+  "tests": [
+    {
+      "title": "E2E-01 Register login search cart test order confirmation @regression",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 79337
+        }
+      ]
+    },
+    {
+      "title": "CAR-06 Empty cart",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 13524
+        }
+      ]
+    },
+    {
+      "title": "CHE-04 Credit card required fields",
+      "project": "chromium",
+      "status": "unexpected",
+      "attempts": [
+        {
+          "status": "failed",
+          "durationMs": 21643
+        }
+      ]
+    }
+  ]
+}

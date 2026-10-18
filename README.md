@@ -6,21 +6,24 @@ My focus was on tests I could run, investigate, and maintain: clear page objects
 
 **[Open Playwright HTML report](https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/) · [Open Allure report](https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/)**
 
-## Latest execution
+## Latest PR #1 follow-up — 18 October 2026
 
-The included reports are from the same real **Chromium + API smoke run, using two workers**. All **11 tests passed**, with no retries, skips, or flaky results. The snapshot was recorded on **17 October 2026** and took **22.7 seconds**. These are saved execution results, not a live status indicator.
+I kept all 61 scenarios and their intended assertions, investigated the remaining failures, and separated static checks, API execution and browser execution in CI. Passing checks are visible independently; the workflow still fails when browser access is blocked.
 
-The complete suite has **61 scenarios**. I ran it with both one and two workers:
+| Execution                                | Workers | Total | Passed | Failed | Skipped | Flaky | Duration |
+| ---------------------------------------- | ------: | ----: | -----: | -----: | ------: | ----: | -------: |
+| Local four affected checks               |       1 |     4 |      1 |      3 |       0 |     0 |  127.1 s |
+| Local complete Chromium + API regression |       1 |    61 |     54 |      7 |       0 |     0 |  336.9 s |
+| Hosted API smoke                         |       1 |     2 |      2 |      0 |       0 |     0 |    2.1 s |
+| Hosted Chromium smoke                    |       1 |     9 |      7 |      2 |       0 |     0 |   55.1 s |
 
-| Scope                     | Workers | Passed | Failed | Skipped | Duration |
-| ------------------------- | ------: | -----: | -----: | ------: | -------: |
-| Chromium + API regression |       1 |     58 |      3 |       0 |   6m 13s |
-| Chromium + API regression |       2 |     58 |      3 |       0 |    3m 3s |
-| Chromium + API smoke      |       2 |     11 |      0 |       0 |      23s |
+The latest full regression is **54 passed / 7 failed / 0 skipped**. CAR-06 and CHE-04 still expose UI failures. E2E-01 still cannot complete PDF generation and encountered an API 500 in the full run. That run also encountered three registration 500s and a 422 rejecting a product the API had just served. I retained those results; I did not rerun until the count looked better. CHE-03 passed both new checks including cleanup, but its original connection timeout remains recorded.
 
-The same three checks failed in both full runs: fresh empty-cart rendering, required-field feedback for credit cards, and invoice PDF generation. I kept those checks active and documented the findings in [known application issues](docs/hosted-application-blockers.md). The passing smoke report does not mean the entire regression is green.
+[Current results and root-cause limits](docs/execution-summary.md) · [Known application findings](docs/hosted-application-blockers.md) · [CI access policy review](docs/ci-access-policy.md).
 
-See the [execution summary](docs/execution-summary.md) for the full results and [coverage matrix](docs/test-coverage.md) for individual scenarios.
+[GitHub Actions run 39099043227](https://github.com/srenevasanks/playwright-typescript-automation-framework/actions/runs/39099043227) has **green static checks and API smoke (2/2)**, with **browser smoke still failed (7/9)** on AUT-01 and REG-01 Cloudflare 403 challenges. Local AUT-01 and REG-01 passed with the same locked browser build. This is not a fully passing hosted suite.
+
+The report links above are the **historical 17 October smoke snapshot**: 11 passed, zero failed/skipped, Chromium + API, two workers, 22.7 seconds. They are not a live status badge or a passing 61-case regression. Earlier same-day local smoke passed 11/11, Firefox 9/9 and WebKit 9/9; these were not rerun as broad browser suites in this follow-up. The earlier 57/61 full run, its cleanup timeout, and all original evidence remain preserved. [Report scope and retention](docs/reporting.md).
 
 ## What this project demonstrates
 
@@ -115,19 +118,23 @@ npm run allure:open
 
 Playwright writes `playwright-report/index.html` automatically after execution. Allure writes raw results to `allure-results/`; its HTML generator requires Java 17 or later and outputs `allure-report/`.
 
-Failures retain screenshots and videos. Tracing starts on the first retry; for a focused investigation use `--retries=1`, then open the trace with `npx playwright show-trace path/to/trace.zip`.
+Failures retain screenshots and videos. CI retains failure traces with zero retries; local default tracing starts on the first retry. For a focused investigation use `--trace=on --retries=0`, then open it with `npx playwright show-trace path/to/trace.zip`.
 
 The `reports/` folder contains one Playwright HTML report and one Allure report from the same smoke snapshot. Generated credentials and machine identifiers were redacted; results and timings are unchanged. The links at the top open each report directly in the browser. GitHub Pages serves only these report files; there is no separate portfolio or landing page. For local viewing, serve the repository with `npx http-server .` and open `/reports/playwright/` or `/reports/allure/`. New test runs generate reports in the usual output directories described above.
 
 ## GitHub Actions
 
-Pushes and pull requests run type checking, linting, and Chromium + API smoke with **one worker**. A manual workflow input runs the broader Chromium + API regression. The workflow installs dependencies and Chromium, generates both reports, and uploads reports and failure artifacts for seven days, including when tests fail. Failures keep the job red.
+The workflow has three visible jobs: static checks (npm ci, TypeScript, ESLint and formatting), API execution, and Chromium execution. API and browser run sequentially with **one worker and zero retries**. Browser challenges remain failed tests and keep the workflow red; successful static/API jobs are not presented as a green browser suite. A manual input selects regression instead of smoke without changing any scenarios.
 
-There is no scheduled traffic against the demo. CI reports belong to that particular workflow run; they do not replace the checked-in report snapshot. Secrets for a separately authorized environment should go in GitHub Actions secrets, not `.env` files in Git.
+Each execution job uses locked dependencies, Java 17 for Allure, separate scope-labelled HTML/Allure/JSON artifacts and seven-day retention. Chromium is installed only for the browser job. Failure traces, screenshots and videos upload after test failures. The current hosted run and response evidence are in [the execution summary](docs/execution-summary.md).
+
+The owner's public API examples include GitHub Actions, but I found no explicit assurance of challenge-free GitHub-hosted UI access in the guidance reviewed. [Access review and authorized execution options](docs/ci-access-policy.md). I use normal browser settings and do not solve or disguise challenges. Reliable unattended UI execution needs an owner-approved test environment or access policy; no alternate environment was deployed here.
+
+There is no scheduled public-demo traffic. CI artifacts belong to their execution and never silently replace the frozen published smoke snapshot. Environment secrets belong in GitHub Actions secrets.
 
 ## Browser coverage and current limits
 
-Chromium, Firefox, and WebKit projects are configured. Earlier smoke runs passed 9/9 in each browser; WebKit needed an unchanged rerun after public-service 500/422 responses. The latest full one/two-worker comparison was Chromium + API. I have not claimed a full passing regression across all three browsers.
+Earlier Chromium, Firefox, and WebKit smoke checks each passed 9/9 on 18 October 2026; the separate API smoke passed 2/2. Actual bundled browser versions and dates are recorded in the execution summary. The latest full one/two-worker comparison was Chromium + API. I have not claimed a full passing regression across all three browsers.
 
 Product IDs and shared demo data can change. If a test fails, I check the live response and report before changing the expectation. The application also has no separate shipping-selection step in the inspected checkout flow, so there is no invented shipping test.
 

@@ -1,0 +1,174 @@
+[
+  {
+    "testId": "E2E-01",
+    "trace": "test-results-review-focused/e2e-journeys-E2E-01-Regist-51c65-der-confirmation-regression-chromium/trace.zip",
+    "network": [
+      {
+        "method": "POST",
+        "path": "/payment/check",
+        "status": 200,
+        "body": {
+          "message": "Payment was successful"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 400,
+        "body": {
+          "status": "NOT_INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 400,
+        "body": {
+          "status": "NOT_INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 400,
+        "body": {
+          "status": "NOT_INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 400,
+        "body": {
+          "status": "NOT_INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/invoices/<invoice-number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      }
+    ],
+    "screenshot": "test-results-review-focused/e2e-journeys-E2E-01-Regist-51c65-der-confirmation-regression-chromium/test-failed-1.png"
+  },
+  {
+    "testId": "CAR-06",
+    "trace": "test-results-review-focused/ui-cart-cart-Cart-regression-CAR-06-Empty-cart-chromium/trace.zip",
+    "network": [],
+    "screenshot": "test-results-review-focused/ui-cart-cart-Cart-regression-CAR-06-Empty-cart-chromium/test-failed-1.png",
+    "curatedScreenshot": "car-06.png"
+  },
+  {
+    "testId": "CHE-04",
+    "trace": "test-results-review-focused/ui-checkout-checkout-Check-31c2a-Credit-card-required-fields-chromium/trace.zip",
+    "network": [
+      {
+        "method": "POST",
+        "path": "/payment/check",
+        "status": 422,
+        "body": {
+          "message": "The payment details.credit card number field is required. (and 3 more errors)",
+          "errors": {
+            "payment_details.credit_card_number": [
+              "The payment details.credit card number field is required."
+            ],
+            "payment_details.expiration_date": [
+              "The payment details.expiration date field is required."
+            ],
+            "payment_details.cvv": [
+              "The payment details.cvv field is required."
+            ],
+            "payment_details.card_holder_name": [
+              "The payment details.card holder name field is required."
+            ]
+          }
+        }
+      }
+    ],
+    "screenshot": "test-results-review-focused/ui-checkout-checkout-Check-31c2a-Credit-card-required-fields-chromium/test-failed-1.png",
+    "curatedScreenshot": "che-04.png"
+  }
+]
