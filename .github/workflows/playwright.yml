@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       regression:
-        description: Run Chromium regression instead of smoke
+        description: Run the preserved Chromium and API regression instead of smoke
         type: boolean
         default: false
 permissions:
@@ -15,16 +15,32 @@ permissions:
 concurrency:
   group: playwright-${{ github.ref }}
   cancel-in-progress: false
+env:
+  CI: true
+  WORKERS: 1
+  RETRIES: 0
+  BASE_URL: https://practicesoftwaretesting.com
+  API_URL: https://api.practicesoftwaretesting.com
 jobs:
-  smoke:
+  checks:
+    name: TypeScript, lint and formatting
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
-    env:
-      CI: true
-      WORKERS: 1
-      RETRIES: 0
-      BASE_URL: https://practicesoftwaretesting.com
-      API_URL: https://api.practicesoftwaretesting.com
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run format:check
+  api:
+    name: API execution (one worker)
+    needs: checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,36 +51,86 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Record tool versions
+      - run: npm ci
+      - name: Run real API scope
+        env:
+          REGRESSION: ${{ inputs.regression || false }}
+        run: |
+          if [ "$REGRESSION" = "true" ]; then
+            npm run test:regression -- --project=api
+          else
+            npm run test:smoke -- --project=api
+          fi
+      - name: Summarize actual API results
+        if: always()
+        env:
+          SCOPE: ${{ inputs.regression && 'api-regression' || 'api-smoke' }}
+        run: node scripts/summarize-results.mjs test-results/results.json test-results/execution-summary.json "$SCOPE"
+      - name: Generate Allure API report
+        if: always()
+        run: npm run allure:generate
+      - name: Upload API reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-api-${{ inputs.regression && 'regression' || 'smoke' }}-${{ github.run_id }}
+          retention-days: 7
+          path: |
+            playwright-report/
+            test-results/
+            allure-results/
+            allure-report/
+  browser:
+    name: Chromium execution (one worker; access restrictions remain failures)
+    needs: [checks, api]
+    # API runs first to keep total live-site concurrency at one worker. An API
+    # failure does not suppress browser evidence when static checks passed.
+    if: ${{ always() && !cancelled() && needs.checks.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Record runner environment
         run: |
           node --version
           npm --version
           java -version
+          uname -sr
+          nproc
+          free -m
+          df -h /tmp /dev/shm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run format:check
-      - name: Run approved bounded suite
+      - name: Run real browser scope
+        env:
+          REGRESSION: ${{ inputs.regression || false }}
         run: |
-          if [ "${{ inputs.regression }}" = "true" ]; then
-            npm run test:regression -- --project=chromium --project=api
+          if [ "$REGRESSION" = "true" ]; then
+            npm run test:regression -- --project=chromium
           else
-            npm run test:smoke -- --project=chromium --project=api
+            npm run test:smoke -- --project=chromium
           fi
-      - name: Summarize actual execution scope
+      - name: Summarize actual browser results
         if: always()
         env:
-          EXECUTION_SCOPE: ${{ inputs.regression && 'regression' || 'smoke' }}
-        run: node scripts/summarize-results.mjs test-results/results.json test-results/execution-summary.json "$EXECUTION_SCOPE"
-      - name: Generate Allure report
+          SCOPE: ${{ inputs.regression && 'chromium-regression' || 'chromium-smoke' }}
+        run: node scripts/summarize-results.mjs test-results/results.json test-results/execution-summary.json "$SCOPE"
+      - name: Generate Allure browser report
         if: always()
         run: npm run allure:generate
-      - name: Preserve reports and diagnostics
+      - name: Upload browser reports and original failures
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-${{ inputs.regression && 'regression' || 'smoke' }}-${{ github.run_id }}-${{ github.run_attempt }}
+          name: playwright-chromium-${{ inputs.regression && 'regression' || 'smoke' }}-${{ github.run_id }}
           retention-days: 7
           path: |
             playwright-report/
