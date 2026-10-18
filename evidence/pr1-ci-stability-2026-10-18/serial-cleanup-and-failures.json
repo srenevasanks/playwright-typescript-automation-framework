@@ -1,0 +1,186 @@
+{
+  "source": "actual full single-worker runtime attachments",
+  "attempts": [
+    {
+      "test": "API-08 Owned cart quantity lifecycle",
+      "project": "api",
+      "status": 204,
+      "completed": true,
+      "durationMs": 471,
+      "cartIdSha256": "b7481bb85ea7733da61c76639e2a6fb25dfe8305966a8bb9254676e83a761102"
+    },
+    {
+      "test": "E2E-01 Register login search cart test order confirmation @regression",
+      "project": "chromium",
+      "status": 500,
+      "completed": false,
+      "durationMs": 455,
+      "failureKind": "status-assertion",
+      "cartIdSha256": "cadd24f49f093cb46064c0eaeff02daabfaab19284dae2adee2f77589f03793f"
+    },
+    {
+      "test": "INT-01 API product to UI search and cart to API @smoke @regression",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 491,
+      "cartIdSha256": "c65e8040f32bcbacfe993b62589a237772918ea2100849ea8e903f56865881a8"
+    },
+    {
+      "test": "CAR-01 Add single product @smoke",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 471,
+      "cartIdSha256": "71667138835313fd66799c584ddab02bcf683f6db36c307e64ce2884c00e3785"
+    },
+    {
+      "test": "CAR-02 Add multiple products",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 513,
+      "cartIdSha256": "ce0587dbb5f97808c07f0de75d10b44ef7f6a695b34c85802c214f1235a28213"
+    },
+    {
+      "test": "CAR-03 Remove last product",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 487,
+      "cartIdSha256": "ee4d751d8fe679000416a5fa5719e2c8b6fdfa8a672bfb803622e9270c91c049"
+    },
+    {
+      "test": "CAR-04 Update quantity and subtotal",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 522,
+      "cartIdSha256": "989117c4b7cda9203cdb49738d0149fb574ae2ace9e44472fc0c791ea6aadea0"
+    },
+    {
+      "test": "CAR-05 Cart total across products",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 491,
+      "cartIdSha256": "94195945145a35af34b5ea696456a77d1828d93652fa8fd87b6154e803c55ba3"
+    },
+    {
+      "test": "CAR-07 Continue shopping navigation",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 493,
+      "cartIdSha256": "31fe2fe0cf550ac82c289c8ade51e83d01aefcd3af3727c3303d5095cbc8092b"
+    },
+    {
+      "test": "CAR-08 Cart persists on reload",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 481,
+      "cartIdSha256": "be894a2f3ef887e4d3440ace3ce558d7091c4e4efc9c7147ef4648cae9601023"
+    },
+    {
+      "test": "CHE-05 Guest checkout identity required @regression",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 486,
+      "cartIdSha256": "76689364588e06e7817280e5ff3210efa9db82a7cab81fdbe5a6935dcd24923c"
+    },
+    {
+      "test": "CHE-01 Signed-in address is prefilled",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 494,
+      "cartIdSha256": "e00730cdb44cb312292f1e516b5db32204510f4dff6c23dd929b692b14ed7b38"
+    },
+    {
+      "test": "CHE-02 Required billing address",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 486,
+      "cartIdSha256": "1fa0c774a32eeb11fe2966bce1d3399b55b3ec6dbb893c9363ee6b37e29a50d1"
+    },
+    {
+      "test": "CHE-03 Payment selection supported",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 486,
+      "cartIdSha256": "907a8669d90c369f17e294e0c10a08d01f523ed772b7eb84ce39ef47df2f334f"
+    },
+    {
+      "test": "CHE-04 Credit card required fields",
+      "project": "chromium",
+      "status": 204,
+      "completed": true,
+      "durationMs": 503,
+      "cartIdSha256": "979384f1d9df995e5d79fb7e375d48076ed71d550d07eeeece092ef303a67507"
+    }
+  ],
+  "crossTestCartReuse": [],
+  "failed": [
+    {
+      "test": "E2E-01 Register login search cart test order confirmation @regression",
+      "project": "chromium",
+      "startTime": "2026-10-18T04:58:59.507Z",
+      "errors": [
+        "Error: PDF status accepts only success or its initial lifecycle state\nExpected value: 500\nReceived array: [200, 400]",
+        "Error: Owned cart cleanup status\nExpected value: 500\nReceived array: [204, 404]"
+      ]
+    },
+    {
+      "test": "E2E-02 Filter select quantity test order",
+      "project": "chromium",
+      "startTime": "2026-10-18T05:00:16.289Z",
+      "errors": [
+        "Error: API https://api.practicesoftwaretesting.com/users/register status\nExpected: 201\nReceived: 500"
+      ]
+    },
+    {
+      "test": "E2E-03 Modify cart validate totals remove all",
+      "project": "chromium",
+      "startTime": "2026-10-18T05:00:18.180Z",
+      "errors": [
+        "Error: API https://api.practicesoftwaretesting.com/users/register status\nExpected: 201\nReceived: 500"
+      ]
+    },
+    {
+      "test": "E2E-04 Update profile logout login verify",
+      "project": "chromium",
+      "startTime": "2026-10-18T05:00:20.073Z",
+      "errors": [
+        "Error: API https://api.practicesoftwaretesting.com/users/register status\nExpected: 201\nReceived: 500"
+      ]
+    },
+    {
+      "test": "INT-01 API product to UI search and cart to API @smoke @regression",
+      "project": "chromium",
+      "startTime": "2026-10-18T05:00:24.457Z",
+      "errors": [
+        "Error: expect(received).toBe(expected) // Object.is equality\nExpected: 200\nReceived: 422"
+      ]
+    },
+    {
+      "test": "CAR-06 Empty cart",
+      "project": "chromium",
+      "startTime": "2026-10-18T05:01:59.056Z",
+      "errors": [
+        "Error: expect(locator).toBeVisible() failed\nLocator: getByText('The cart is empty.')\nExpected: visible\nError: element(s) not found"
+      ]
+    },
+    {
+      "test": "CHE-04 Credit card required fields",
+      "project": "chromium",
+      "startTime": "2026-10-18T05:02:49.366Z",
+      "errors": [
+        "Error: expect(locator).toBeVisible() failed\nLocator: getByText('Credit card number is required.')\nExpected: visible\nError: element(s) not found"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+[
+  {
+    "testId": "E2E-01",
+    "trace": "test-results-pr1-followup/e2e-journeys-E2E-01-Regist-51c65-der-confirmation-regression-chromium/trace.zip",
+    "observations": [
+      {
+        "path": "/payment/check",
+        "status": 200,
+        "body": {
+          "message": "Payment was successful"
+        }
+      },
+      {
+        "path": "/invoices/<number>/download-pdf-status",
+        "status": 400,
+        "body": {
+          "status": "NOT_INITIATED"
+        }
+      },
+      {
+        "path": "/invoices/<number>/download-pdf-status",
+        "status": 200,
+        "body": {
+          "status": "INITIATED"
+        }
+      }
+    ],
+    "unknownErrorVisible": false
+  },
+  {
+    "testId": "CAR-06",
+    "trace": "test-results-pr1-followup/ui-cart-cart-Cart-regression-CAR-06-Empty-cart-chromium/trace.zip",
+    "observations": [],
+    "unknownErrorVisible": false
+  },
+  {
+    "testId": "CHE-03",
+    "trace": "test-results-pr1-followup/ui-checkout-checkout-Check-18786-Payment-selection-supported-chromium/trace.zip",
+    "observations": []
+  },
+  {
+    "testId": "CHE-04",
+    "trace": "test-results-pr1-followup/ui-checkout-checkout-Check-31c2a-Credit-card-required-fields-chromium/trace.zip",
+    "observations": [
+      {
+        "path": "/payment/check",
+        "status": 422,
+        "body": {
+          "message": "The payment details.credit card number field is required. (and 3 more errors)",
+          "errors": {
+            "payment_details.credit_card_number": [
+              "The payment details.credit card number field is required."
+            ],
+            "payment_details.expiration_date": [
+              "The payment details.expiration date field is required."
+            ],
+            "payment_details.cvv": [
+              "The payment details.cvv field is required."
+            ],
+            "payment_details.card_holder_name": [
+              "The payment details.card holder name field is required."
+            ]
+          }
+        }
+      }
+    ],
+    "unknownErrorVisible": true
+  }
+]

@@ -1,0 +1,133 @@
+{
+  "checkedUtc": "2026-10-18T05:08:16.773Z",
+  "checks": [
+    {
+      "scope": "followup",
+      "format": "playwright",
+      "path": "playwright-report-pr1-followup/index.html",
+      "status": 200,
+      "rendered": true,
+      "title": "Playwright Test Report",
+      "counts": {
+        "failed": 3,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 1,
+        "unknown": 0,
+        "total": 4
+      }
+    },
+    {
+      "scope": "followup",
+      "format": "allure",
+      "path": "allure-report-pr1-followup/index.html",
+      "status": 200,
+      "rendered": true,
+      "title": "Allure Report",
+      "counts": {
+        "failed": 3,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 1,
+        "unknown": 0,
+        "total": 4
+      }
+    },
+    {
+      "scope": "serial",
+      "format": "playwright",
+      "path": "playwright-report-pr1-serial/index.html",
+      "status": 200,
+      "rendered": true,
+      "title": "Playwright Test Report",
+      "counts": {
+        "failed": 7,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 54,
+        "unknown": 0,
+        "total": 61
+      }
+    },
+    {
+      "scope": "serial",
+      "format": "allure",
+      "path": "allure-report-pr1-serial/index.html",
+      "status": 200,
+      "rendered": true,
+      "title": "Allure Report",
+      "counts": {
+        "failed": 7,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 54,
+        "unknown": 0,
+        "total": 61
+      }
+    },
+    {
+      "scope": "ci-api",
+      "format": "playwright",
+      "path": "playwright-report-pr1-ci-api/index.html",
+      "status": 200,
+      "rendered": true,
+      "title": "Playwright Test Report",
+      "counts": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 2,
+        "unknown": 0,
+        "total": 2
+      }
+    },
+    {
+      "scope": "ci-api",
+      "format": "allure",
+      "path": "allure-report-pr1-ci-api/index.html",
+      "status": 200,
+      "rendered": true,
+      "title": "Allure Report",
+      "counts": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 2,
+        "unknown": 0,
+        "total": 2
+      }
+    },
+    {
+      "scope": "ci-chromium",
+      "format": "playwright",
+      "path": "playwright-report-pr1-ci-chromium/index.html",
+      "status": 200,
+      "rendered": true,
+      "title": "Playwright Test Report",
+      "counts": {
+        "failed": 2,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 7,
+        "unknown": 0,
+        "total": 9
+      }
+    },
+    {
+      "scope": "ci-chromium",
+      "format": "allure",
+      "path": "allure-report-pr1-ci-chromium/index.html",
+      "status": 200,
+      "rendered": true,
+      "title": "Allure Report",
+      "counts": {
+        "failed": 2,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 7,
+        "unknown": 0,
+        "total": 9
+      }
+    }
+  ]
+}

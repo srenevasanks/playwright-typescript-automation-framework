@@ -26,3 +26,9 @@ Allure generation requires Java 17 or later. Give each separate run its own REPO
 CI uses a fresh checkout, one worker and no retries. It retains failure traces even without a retry, screenshots and videos, and generates/uploads reports after test failures. Artifact names include scope, run ID and attempt. Artifacts expire after seven days; dated sanitized summaries in Git remain available. The raw test reports can contain synthetic credentials, tokens, addresses, and request bodies in traces: they are debugging artifacts, not material to commit or publish without sanitization. Curated JSON includes only counts, titles, versions and selected non-sensitive status evidence. No PDF containing customer details is committed.
 
 There is no portfolio landing page. Existing report URLs stay unchanged. New reports remain tied to the particular run rather than silently replacing published passing evidence.
+
+## Latest PR #1 reports
+
+The single-worker full regression is playwright-report-pr1-serial/index.html plus allure-report-pr1-serial/index.html (54 passed, seven failed). The four-case focused run is in the corresponding *-report-pr1-followup/ directories (one passed, three failed). These are new actual results, not replacements for older 57/61 or published 11/11 snapshots.
+
+Hosted API and browser jobs now upload separate artifacts, playwright-api-smoke-39099043227 (2/2 passed) and playwright-chromium-smoke-39099043227 (7/9 passed, two challenges). Downloaded original reports were rendered from ignored *-report-pr1-ci-api/ and *-report-pr1-ci-chromium/ directories. [Eight report checks](../evidence/pr1-ci-stability-2026-10-18/report-verification.json) retain the actual displayed counts. Static/API success is not a fully passing workflow; its browser job remains failed. The new dated evidence directory preserves summaries and selected safe observations while raw runtime traces remain ignored.

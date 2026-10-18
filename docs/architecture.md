@@ -16,7 +16,11 @@ flowchart TD
   Runner --> Projects[Chromium, Firefox, WebKit and separate API project]
   Runner --> Report[HTML, JSON and Allure reporters]
   Mock[Explicit MOC-01 mock example] -. route.fulfill .-> Context
-  CI[GitHub Actions one-worker smoke] --> Runner
+  CI[GitHub Actions] --> Checks[Independent static checks]
+  Checks --> ApiJob[API job - one worker]
+  ApiJob --> BrowserJob[Chromium job - one worker]
+  ApiJob --> Runner
+  BrowserJob --> Runner
   Fixtures --> Diagnostics[Console and network diagnostics]
   Diagnostics --> Report
 ```
@@ -40,3 +44,9 @@ TypeScript strict mode, noUncheckedIndexedAccess and unused-symbol checks are en
 The real INT-01 integration uses the API and UI against the same public backend. MOC-01 alone intercepts the search response; the dotted path in the diagram represents a separate mocked example, not backend integration. API runtime assertions are explicit tests; TypeScript interfaces alone do not validate response schemas.
 
 Each test has its own APIRequestContext, UUID data and default browser context. Authenticated tests receive a new account/token through in-memory storageState. The 1–2 worker cap and per-test ownership remain unchanged. The summary helper reads runner JSON and writes ignored runtime output by default. [Report ownership and immutable snapshots](reporting.md) describe the separate historical smoke and current regression evidence.
+
+## PR #1 CI follow-up
+
+Static checks now have their own status, followed by a real API job and then a real Chromium job. Live jobs run sequentially at one worker. Browser security challenges still fail the workflow; they do not invalidate the independent static/API results or become skipped tests. Manual regression partitions the same eight API and 53 browser tests across these jobs. Per-job report artifacts remain separate.
+
+ToolshopApi records each cleanup attempt's timing, status, completion and safe error code. It rethrows failures and retains the existing 204/404 assertion and 30-second API timeout. The API fixture attaches these records and disposes its request context in finally. These changes improve evidence and resource cleanup, not public-service behavior. No shared cart or authentication state was introduced.

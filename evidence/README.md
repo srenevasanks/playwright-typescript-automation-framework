@@ -17,3 +17,7 @@ The current outcomes and links to genuine HTML reports are in [execution-summary
 ## 18 October review
 
 [review-2026-10-18/](review-2026-10-18/) contains new dated summaries, actual browser versions, observed failure responses, selected safe screenshots and a manifest of the unchanged published smoke snapshot. Older files above remain historical and have not been overwritten. Current results and CI links are in [the execution summary](../docs/execution-summary.md). github-smoke.json records the actual 9/11 passing PR smoke and preserves its two Cloudflare access failures; the safe challenge screenshot contains no account data. Native runtime reports remain ignored; the summary helper defaults to test-results/execution-summary.json.
+
+## PR #1 CI stability follow-up
+
+[pr1-ci-stability-2026-10-18/](pr1-ci-stability-2026-10-18/) retains the new four-case reproduction, complete 61-case single-worker result, cleanup provenance/timings, public product consistency observation, current split-job CI evidence and eight report-render checks. Earlier review files are unchanged. Cart/product identifiers in the curated diagnostic records are hashed. Raw traces and generated credentials are not committed. Current status remains failing where the real site/security responses fail the assertions.
