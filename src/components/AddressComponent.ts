@@ -3,6 +3,10 @@ import type { Address } from '../api/models/models';
 export class AddressComponent {
   constructor(private readonly page: Page) {}
   async fill(address: Address): Promise<void> {
+    // Checkout loads and patches the saved profile asynchronously. Settle that
+    // request before reading/editing fields, otherwise it can erase house_number
+    // between fill() and the debounced lookup. Keep this at the address boundary.
+    await this.page.waitForLoadState('networkidle');
     const alreadyEntered =
       (await this.page.getByTestId('country').inputValue()) === address.country &&
       (await this.page.getByTestId('postal_code').inputValue()) === address.postal_code &&

@@ -14,14 +14,15 @@ permissions:
   contents: read
 concurrency:
   group: playwright-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   smoke:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
       CI: true
       WORKERS: 1
+      RETRIES: 0
       BASE_URL: https://practicesoftwaretesting.com
       API_URL: https://api.practicesoftwaretesting.com
     steps:
@@ -30,10 +31,20 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Record tool versions
+        run: |
+          node --version
+          npm --version
+          java -version
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run typecheck
       - run: npm run lint
+      - run: npm run format:check
       - name: Run approved bounded suite
         run: |
           if [ "${{ inputs.regression }}" = "true" ]; then
@@ -41,6 +52,11 @@ jobs:
           else
             npm run test:smoke -- --project=chromium --project=api
           fi
+      - name: Summarize actual execution scope
+        if: always()
+        env:
+          EXECUTION_SCOPE: ${{ inputs.regression && 'regression' || 'smoke' }}
+        run: node scripts/summarize-results.mjs test-results/results.json test-results/execution-summary.json "$EXECUTION_SCOPE"
       - name: Generate Allure report
         if: always()
         run: npm run allure:generate
@@ -48,7 +64,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-results-${{ github.run_attempt }}
+          name: playwright-${{ inputs.regression && 'regression' || 'smoke' }}-${{ github.run_id }}-${{ github.run_attempt }}
           retention-days: 7
           path: |
             playwright-report/

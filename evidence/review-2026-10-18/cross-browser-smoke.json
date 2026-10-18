@@ -1,0 +1,249 @@
+{
+  "scope": "smoke",
+  "globalErrorCount": 0,
+  "stats": {
+    "startTime": "2026-10-18T04:37:26.330Z",
+    "duration": 120139.046,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "execution": {
+    "configuredWorkers": 1,
+    "peakConcurrentAttempts": 1,
+    "actualWorkers": 1,
+    "projects": [
+      {
+        "name": "api",
+        "retries": 0
+      },
+      {
+        "name": "chromium",
+        "retries": 0
+      },
+      {
+        "name": "firefox",
+        "retries": 0
+      },
+      {
+        "name": "webkit",
+        "retries": 0
+      }
+    ]
+  },
+  "projects": {
+    "firefox": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "webkit": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    }
+  },
+  "tests": [
+    {
+      "title": "INT-01 API product to UI search and cart to API @smoke @regression",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 13649
+        }
+      ]
+    },
+    {
+      "title": "INT-01 API product to UI search and cart to API @smoke @regression",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8969
+        }
+      ]
+    },
+    {
+      "title": "ACC-01 Profile and address match API @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10666
+        }
+      ]
+    },
+    {
+      "title": "ACC-01 Profile and address match API @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4273
+        }
+      ]
+    },
+    {
+      "title": "AUT-01 Valid login @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6414
+        }
+      ]
+    },
+    {
+      "title": "AUT-06 Protected account redirects anonymous user @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2107
+        }
+      ]
+    },
+    {
+      "title": "AUT-01 Valid login @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4527
+        }
+      ]
+    },
+    {
+      "title": "AUT-06 Protected account redirects anonymous user @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2280
+        }
+      ]
+    },
+    {
+      "title": "CAR-01 Add single product @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4791
+        }
+      ]
+    },
+    {
+      "title": "CAR-01 Add single product @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 27282
+        }
+      ]
+    },
+    {
+      "title": "CAT-01 Product listing and prices @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1957
+        }
+      ]
+    },
+    {
+      "title": "CAT-08 Exact product search @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2673
+        }
+      ]
+    },
+    {
+      "title": "CAT-14 Product details match API @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2818
+        }
+      ]
+    },
+    {
+      "title": "CAT-01 Product listing and prices @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2422
+        }
+      ]
+    },
+    {
+      "title": "CAT-08 Exact product search @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2874
+        }
+      ]
+    },
+    {
+      "title": "CAT-14 Product details match API @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3217
+        }
+      ]
+    },
+    {
+      "title": "REG-01 Valid unique registration @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6488
+        }
+      ]
+    },
+    {
+      "title": "REG-01 Valid unique registration @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7495
+        }
+      ]
+    }
+  ]
+}

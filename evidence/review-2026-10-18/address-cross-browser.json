@@ -1,0 +1,73 @@
+{
+  "scope": "targeted-post-fix-registration",
+  "globalErrorCount": 0,
+  "stats": {
+    "startTime": "2026-10-18T04:44:45.198Z",
+    "duration": 19077.339,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "execution": {
+    "configuredWorkers": 1,
+    "peakConcurrentAttempts": 1,
+    "actualWorkers": 1,
+    "projects": [
+      {
+        "name": "api",
+        "retries": 0
+      },
+      {
+        "name": "chromium",
+        "retries": 0
+      },
+      {
+        "name": "firefox",
+        "retries": 0
+      },
+      {
+        "name": "webkit",
+        "retries": 0
+      }
+    ]
+  },
+  "projects": {
+    "firefox": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "webkit": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    }
+  },
+  "tests": [
+    {
+      "title": "REG-01 Valid unique registration @smoke",
+      "project": "firefox",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8596
+        }
+      ]
+    },
+    {
+      "title": "REG-01 Valid unique registration @smoke",
+      "project": "webkit",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7686
+        }
+      ]
+    }
+  ]
+}

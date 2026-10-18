@@ -1,11 +1,25 @@
 import fs from 'node:fs';
-const [, , input = 'test-results/results.json', output = 'evidence/latest-run.json'] = process.argv;
+import path from 'node:path';
+const [
+  ,
+  ,
+  input = 'test-results/results.json',
+  output = 'test-results/execution-summary.json',
+  scope = 'unspecified',
+] = process.argv;
 const report = JSON.parse(fs.readFileSync(input, 'utf8'));
 const tests = [];
+const timeline = [];
 function visit(suites) {
   for (const suite of suites) {
     for (const spec of suite.specs ?? []) {
       for (const test of spec.tests) {
+        for (const result of test.results) {
+          const start = Date.parse(result.startTime);
+          if (Number.isFinite(start) && result.duration > 0) {
+            timeline.push([start, 1], [start + result.duration, -1]);
+          }
+        }
         tests.push({
           title: spec.title,
           project: test.projectName,
@@ -21,7 +35,28 @@ function visit(suites) {
   }
 }
 visit(report.suites);
-const summary = { stats: report.stats, projects: {}, tests };
+let active = 0;
+let peakConcurrentAttempts = 0;
+for (const [, change] of timeline.sort((a, b) => a[0] - b[0] || a[1] - b[1])) {
+  active += change;
+  peakConcurrentAttempts = Math.max(peakConcurrentAttempts, active);
+}
+const summary = {
+  scope,
+  globalErrorCount: report.errors?.length ?? 0,
+  stats: report.stats,
+  execution: {
+    configuredWorkers: report.config.workers,
+    peakConcurrentAttempts,
+    actualWorkers: report.config.metadata?.actualWorkers ?? null,
+    projects: report.config.projects.map((project) => ({
+      name: project.name,
+      retries: project.retries,
+    })),
+  },
+  projects: {},
+  tests,
+};
 for (const test of tests) {
   const counts = (summary.projects[test.project] ??= {
     passed: 0,
@@ -35,6 +70,6 @@ for (const test of tests) {
   if (!key) throw new Error(`Unknown runner status ${test.status}`);
   counts[key]++;
 }
-fs.mkdirSync('evidence', { recursive: true });
+fs.mkdirSync(path.dirname(output), { recursive: true });
 fs.writeFileSync(output, JSON.stringify(summary, null, 2) + '\n');
 console.log(JSON.stringify({ stats: summary.stats, projects: summary.projects }, null, 2));

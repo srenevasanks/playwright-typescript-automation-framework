@@ -1,63 +1,45 @@
-# Latest execution summary — worker validation
+# Execution review — 18 October 2026 (IST)
 
-Executed against the real publicly hosted Toolshop application on **17 October 2026 (IST)**. The initial delivery and earlier runs are preserved in [execution-summary-initial.md](execution-summary-initial.md) and evidence/. This document supersedes their outcome counts for the latest source revision.
+I reviewed the existing framework and preserved all 61 distinct Chromium/API scenarios and their assertions. The application remains the real public Practice Software Testing deployment. Node 24.11.1, Playwright 1.64.1, Windows, headless 1280×720; actual versions are in [environment evidence](../evidence/review-2026-10-18/environment.json): Chromium 156.0.8078.4, Firefox 157.0, WebKit 27.2.
 
-## Actual results
+## Actual local execution
 
-| Scope                        | Workers | Tests | Passed | Failed | Skipped | Flaky | Runner duration |
-| ---------------------------- | ------: | ----: | -----: | -----: | ------: | ----: | --------------: |
-| Full Chromium/API regression |       1 |    61 |     58 |      3 |       0 |     0 |         372.7 s |
-| Full Chromium/API regression |       2 |    61 |     58 |      3 |       0 |     0 |         182.7 s |
-| Critical Chromium/API smoke  |       2 |    11 |     11 |      0 |       0 |     0 |          22.7 s |
+| Local execution                         | Workers | Total | Passed | Failed | Skipped | Flaky | Duration |
+| --------------------------------------- | ------: | ----: | -----: | -----: | ------: | ----: | -------: |
+| Focused historical-failure reproduction |       1 |     3 |      0 |      3 |       0 |     0 |  123.5 s |
+| Complete regression before address fix  |       2 |    61 |     58 |      3 |       0 |     0 |  160.5 s |
+| Complete regression after address fix   |       2 |    61 |     57 |      4 |       0 |     0 |  194.0 s |
+| Chromium + API smoke                    |       2 |    11 |     11 |      0 |       0 |     0 |   21.2 s |
+| Firefox + WebKit smoke                  |       1 |    18 |     18 |      0 |       0 |     0 |  120.1 s |
+| Separate CHE-03 network check           |       1 |     1 |      1 |      0 |       0 |     0 |    9.9 s |
 
-The source has 61 unique scenarios: 53 browser cases and eight API cases, across seven functional feature areas. Both complete runs executed all 61, including the attachment case and every retained application-defect assertion. There was no filtering of failing scenarios, conditional skipping or expected-failure annotation. One explicitly tagged mock example is included and is not backend-integration evidence.
+Each row is a separate execution, not additive coverage. The 61-case regression includes 53 browser cases and eight API tests. MOC-01 is one explicitly mocked browser case; it is not live backend proof. Sanitized runner summaries in [dated evidence](../evidence/review-2026-10-18/) contain every title, outcome, attempt duration and configured/observed concurrency. All review runs used zero retries. No scenario is skipped or marked expected-failure.
 
-Serial failure IDs: **CAR-06, CHE-04, E2E-01**. Parallel failure IDs: **CAR-06, CHE-04, E2E-01**. The failure sets are identical; two workers introduced no additional failing scenario in this comparison.
+The focused run reproduced CAR-06 (empty-cart rendering), CHE-04 (missing credit-card feedback) and E2E-01 (PDF status stayed INITIATED). The first full run also exposed an **automation address setup race** in E2E-01, before PDF generation. After the targeted synchronization fix, E2E-01 passed address setup and order creation and reached the same PDF completion failure as the focused execution. The current complete result is **57 passed / 4 failed / 0 skipped**, not a passing regression.
 
-The measured one-run duration ratio was 2.04× (one worker divided by two workers). This is an observed comparison, not a controlled performance benchmark. Workers remain capped at two in environment configuration for this shared public site; CI defaults to one.
+The fourth failure, CHE-03, is a teardown connection timeout on DELETE /carts/<owned-id> (ETIMEDOUT 24.144.76.208:443). Its business assertions completed before cleanup. A separate one-case diagnostic check passed including cleanup; that result does not replace the complete run's failure. The leftover cart from the failed cleanup may remain until the public demo resets. The precise network cause is unproven. [Failure investigation](hosted-application-blockers.md) explains expected/actual behavior and evidence.
 
-## Fixes delivered
+Chromium smoke passed 9/9 browser tests and API smoke passed 2/2, jointly 11/11 with two workers. Firefox and WebKit each passed 9/9 smoke cases with one worker. After changing address setup, I also rechecked its existing REG-01 scenario in both engines; the separate result is retained. No full Firefox/WebKit regression was run or claimed.
 
-- **CHE-02 address synchronization:** the loading indicator can disappear before a second debounced lookup finishes. Address entry now waits for network quiescence specifically at the form boundary before manual edits. No fixed sleep or force-click was added. All original empty-field, disabled-Proceed and hidden-payment assertions remain. Two focused repetitions passed before the full worker runs.
-- **CAT-13 combined controls:** independent real-browser exploration established the supported sequence search → filter → sort. The same four products and ascending-price assertions remain; additional checks verify q, category and sort in the actual catalog request plus checked/selected UI controls. This corrects the previous unsupported action-order assumption; sort → search behavior on the hosted site is not represented as repaired.
-- **E2E-01 PDF lifecycle:** the test no longer rejects legitimate initial NOT_INITIATED/INITIATED states immediately. It polls documented transitional status combinations for 60 seconds and still requires HTTP 200 + COMPLETED, enabled UI download, a real .pdf download and valid PDF signature/size. This fixes premature synchronization; the hosted generation job still blocks the final outcome.
-- Added explicit test:serial, test:parallel and test:smoke:parallel npm commands. Unique users, in-memory auth state and independent browser contexts remain unchanged.
+npm ci installed the lockfile successfully with zero audit findings. Type checking, ESLint and formatting validation passed. The test source files, assertions, API clients, page objects, test data, authentication/session setup and package lockfile remain unchanged. The only interaction change is settling asynchronous profile traffic before reading/editing the existing address form.
 
-## Why full regression is not 100%
+## Worker comparison
 
-The remaining checks exercise application behavior that this automation repository cannot deploy fixes for:
+The preserved 17 October runs were 58/61 passed, three failed, zero skipped: one worker 372.7 s and two workers 182.7 s. Those are historical measurements, not today's results. Today's before-fix two-worker run took 160.5 s; the after-fix run took 194.0 s and included a full PDF wait plus a cleanup connection failure. They are not controlled performance benchmarks. Per-test UUID data, API contexts and authentication state remain independent, and concurrency stays bounded at 1–2. The default remains one; no higher concurrency was introduced.
 
-1. **CAR-06:** fresh checkout dereferences a null cart and does not render the empty-cart message. A concrete template guard correction is documented for the application owner.
-2. **CHE-04:** empty credit-card fields produce Unknown error instead of required-field feedback. Public source omits required validators and does not map field validation errors correctly.
-3. **E2E-01:** real test order, confirmation and persisted invoice succeed, but PDF generation does not reach COMPLETED within 60 seconds. Status remains INITIATED or NOT_INITIATED; no substitute PDF is generated by the test.
+## Reports and public links
 
-See [hosted-application-blockers.md](hosted-application-blockers.md) for owner-side corrections and diagnosis. No claim is made that those public-site defects were fixed or deployed. Making these tests pass by changing their expected errors, pre-creating a cart to hide the no-cart path, mocking the backend or dropping PDF assertions would conceal the failures and was not done.
+I generated and opened the actual reports in Chromium:
 
-## Included reports and full-run evidence
+- Current smoke: playwright-report-review-smoke/index.html and allure-report-review-smoke/index.html — 11 passed.
+- Current complete regression: playwright-report-review-final-regression/index.html and allure-report-review-final-regression/index.html — 57 passed, four failed.
+- Failure screenshots, videos, traces, JSON and diagnostic attachments: test-results-review-focused/ and test-results-review-final-regression/ (ignored runtime artifacts).
+- [Report-open evidence](../evidence/review-2026-10-18/report-open-check.json) records rendering and HTTP checks. Allure's default “Product defects” category is reporter grouping, not a confirmed root-cause classification; use the investigation above for the cleanup/network finding.
 
-The `reports/` folder contains one [Playwright HTML report](https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/) and one [Allure report](https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/), both from the eleven-case two-worker smoke snapshot. These reports show 11/11 smoke, not the full regression.
+The existing [published Playwright](https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/) and [published Allure](https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/) links still represent **17 October's 11/11 passing smoke**, two workers. They have not been replaced by the new regression. [Snapshot manifest](../evidence/review-2026-10-18/published-snapshot-manifest.json), [report ownership](reporting.md), [previous execution summary](history/execution-summary-2026-10-17.md) and the original evidence remain preserved.
 
-Full regression outcomes are preserved in the sanitized runner records [workers-1.json](../evidence/workers-1.json) and [workers-2.json](../evidence/workers-2.json), alongside [parallel-smoke-followup.json](../evidence/parallel-smoke-followup.json). Earlier diagnostic reports are archived outside the source project; duplicate generated report folders are not published in this repository. Local new runs still generate reports at the standard configured paths.
+## GitHub Actions validation
 
-The included reports have generated credentials and machine identifiers redacted, with no change to results or timings.
+The previous hosted smoke run [39047076592](https://github.com/srenevasanks/playwright-typescript-automation-framework/actions/runs/39047076592) completed with failed login/registration checks showing Cloudflare verification pages. Its access restriction is documented separately from the local application findings. Current updated PR workflow validation is pending at this documentation revision; I do not claim a hosted pass from YAML inspection.
 
-## Commands
-
-Run from the project folder:
-
-```bash
-npm ci
-npx playwright install
-npm run typecheck
-npm run lint
-npm run format:check
-npm run test:serial
-npm run test:parallel
-npm run test:smoke:parallel
-npm run report
-npm run allure:generate
-```
-
-The equivalent explicit worker commands are npm run test:regression -- --project=chromium --project=api --workers=1 and --workers=2. Reports were kept in separate folders through environment overrides during comparison. No unapproved local application was installed or hosted. Only the generated report is served locally for viewing.
-
-Node 24.11.1, Playwright 1.64.1 and the previously recorded Chromium 156 environment were used. Strict type checking and linting passed after the code changes. Earlier Firefox/WebKit smoke results are historical validation, not a claim of complete cross-browser regression after these changes. See the initial summary for browser versions, API coverage, CI and test-data cleanup limitations.
+The updated workflow uses Ubuntu 24.04, Node 24, npm ci, bundled Chromium, explicit Java 17, type checking, linting and formatting. Smoke runs with one worker, zero retries and retained failure traces. Both report formats and a scope-labelled JSON summary upload even after test failures; no continue-on-error or swallowed test exit status is used. Manual regression remains available. No public regression is scheduled, and no access/security bypass was introduced.

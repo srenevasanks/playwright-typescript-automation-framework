@@ -6,21 +6,23 @@ My focus was on tests I could run, investigate, and maintain: clear page objects
 
 **[Open Playwright HTML report](https://srenevasanks.github.io/playwright-typescript-automation-framework/playwright/) · [Open Allure report](https://srenevasanks.github.io/playwright-typescript-automation-framework/allure/)**
 
-## Latest execution
+## Verified review — 18 October 2026
 
-The included reports are from the same real **Chromium + API smoke run, using two workers**. All **11 tests passed**, with no retries, skips, or flaky results. The snapshot was recorded on **17 October 2026** and took **22.7 seconds**. These are saved execution results, not a live status indicator.
+I kept all 61 existing scenarios and their assertions, reproduced the three historical failures, and fixed a separate address setup race exposed by the new full run.
 
-The complete suite has **61 scenarios**. I ran it with both one and two workers:
+| Execution                          | Browser/API scope | Workers | Passed | Failed | Skipped |
+| ---------------------------------- | ----------------- | ------: | -----: | -----: | ------: |
+| Current smoke                      | Chromium + API    |       2 |     11 |      0 |       0 |
+| Current smoke                      | Firefox           |       1 |      9 |      0 |       0 |
+| Current smoke                      | WebKit            |       1 |      9 |      0 |       0 |
+| Full regression before address fix | Chromium + API    |       2 |     58 |      3 |       0 |
+| Full regression after address fix  | Chromium + API    |       2 |     57 |      4 |       0 |
 
-| Scope                     | Workers | Passed | Failed | Skipped | Duration |
-| ------------------------- | ------: | -----: | -----: | ------: | -------: |
-| Chromium + API regression |       1 |     58 |      3 |       0 |   6m 13s |
-| Chromium + API regression |       2 |     58 |      3 |       0 |    3m 3s |
-| Chromium + API smoke      |       2 |     11 |      0 |       0 |      23s |
+The current full regression is **not green**. Fresh-cart rendering and credit-card feedback still fail, and the invoice PDF remains INITIATED within the existing deadline. The fourth failure was a connection timeout during owned-cart cleanup; its separate one-case check passed without replacing the full-run failure. I kept the genuine failures visible. [Investigation](docs/hosted-application-blockers.md) · [Actual execution and environment](docs/execution-summary.md).
 
-The same three checks failed in both full runs: fresh empty-cart rendering, required-field feedback for credit cards, and invoice PDF generation. I kept those checks active and documented the findings in [known application issues](docs/hosted-application-blockers.md). The passing smoke report does not mean the entire regression is green.
+The report links above open the **historical 17 October 2026 Chromium + API smoke snapshot**: 11 passed, zero failed/skipped, two workers, 22.7 seconds. They are not a live badge or a passing 61-case regression. New local reports and hosted artifacts belong to their own executions. [Report scope and retention](docs/reporting.md).
 
-See the [execution summary](docs/execution-summary.md) for the full results and [coverage matrix](docs/test-coverage.md) for individual scenarios.
+The older one/two-worker regression comparison remains in the execution history: both passed 58/61 with the same three failures, taking 372.7 s and 182.7 s respectively. Today's outcomes are listed separately above.
 
 ## What this project demonstrates
 
@@ -115,19 +117,19 @@ npm run allure:open
 
 Playwright writes `playwright-report/index.html` automatically after execution. Allure writes raw results to `allure-results/`; its HTML generator requires Java 17 or later and outputs `allure-report/`.
 
-Failures retain screenshots and videos. Tracing starts on the first retry; for a focused investigation use `--retries=1`, then open the trace with `npx playwright show-trace path/to/trace.zip`.
+Failures retain screenshots and videos. CI retains failure traces with zero retries; local default tracing starts on the first retry. For a focused investigation use `--trace=on --retries=0`, then open it with `npx playwright show-trace path/to/trace.zip`.
 
 The `reports/` folder contains one Playwright HTML report and one Allure report from the same smoke snapshot. Generated credentials and machine identifiers were redacted; results and timings are unchanged. The links at the top open each report directly in the browser. GitHub Pages serves only these report files; there is no separate portfolio or landing page. For local viewing, serve the repository with `npx http-server .` and open `/reports/playwright/` or `/reports/allure/`. New test runs generate reports in the usual output directories described above.
 
 ## GitHub Actions
 
-Pushes and pull requests run type checking, linting, and Chromium + API smoke with **one worker**. A manual workflow input runs the broader Chromium + API regression. The workflow installs dependencies and Chromium, generates both reports, and uploads reports and failure artifacts for seven days, including when tests fail. Failures keep the job red.
+Pushes and pull requests run type checking, linting, formatting, and Chromium + API smoke with **one worker and zero retries**. Java 17 is installed explicitly for Allure. Failure traces do not depend on a retry. A manual workflow input runs the broader Chromium + API regression. The workflow installs locked dependencies and Chromium, generates both reports plus a scope-labelled runtime summary, and uploads reports and failure artifacts for seven days, including when tests fail. Jobs queue rather than interrupting active cleanup. Failures keep the job red.
 
-There is no scheduled traffic against the demo. CI reports belong to that particular workflow run; they do not replace the checked-in report snapshot. Secrets for a separately authorized environment should go in GitHub Actions secrets, not `.env` files in Git.
+The earlier hosted smoke encountered Cloudflare verification pages during login/registration. Current PR validation is recorded in the [execution summary](docs/execution-summary.md); local passes do not establish a hosted pass. There is no scheduled traffic against the demo. CI reports belong to that particular workflow run; they do not replace the checked-in report snapshot. Secrets for a separately authorized environment should go in GitHub Actions secrets, not `.env` files in Git.
 
 ## Browser coverage and current limits
 
-Chromium, Firefox, and WebKit projects are configured. Earlier smoke runs passed 9/9 in each browser; WebKit needed an unchanged rerun after public-service 500/422 responses. The latest full one/two-worker comparison was Chromium + API. I have not claimed a full passing regression across all three browsers.
+Chromium, Firefox, and WebKit smoke checks each passed 9/9 on 18 October 2026; the separate API smoke passed 2/2. Actual bundled browser versions and dates are recorded in the execution summary. The latest full one/two-worker comparison was Chromium + API. I have not claimed a full passing regression across all three browsers.
 
 Product IDs and shared demo data can change. If a test fails, I check the live response and report before changing the expectation. The application also has no separate shipping-selection step in the inspected checkout flow, so there is no invented shipping test.
 

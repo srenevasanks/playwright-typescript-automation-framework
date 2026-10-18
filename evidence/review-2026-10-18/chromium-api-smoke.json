@@ -1,0 +1,172 @@
+{
+  "scope": "smoke",
+  "globalErrorCount": 0,
+  "stats": {
+    "startTime": "2026-10-18T04:33:39.176Z",
+    "duration": 21165.226,
+    "expected": 11,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "execution": {
+    "configuredWorkers": 2,
+    "peakConcurrentAttempts": 2,
+    "actualWorkers": 2,
+    "projects": [
+      {
+        "name": "api",
+        "retries": 0
+      },
+      {
+        "name": "chromium",
+        "retries": 0
+      },
+      {
+        "name": "firefox",
+        "retries": 0
+      },
+      {
+        "name": "webkit",
+        "retries": 0
+      }
+    ]
+  },
+  "projects": {
+    "api": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "chromium": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    }
+  },
+  "tests": [
+    {
+      "title": "API-01 Product list schema @smoke",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 571
+        }
+      ]
+    },
+    {
+      "title": "API-03 Product detail consistency @smoke",
+      "project": "api",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1539
+        }
+      ]
+    },
+    {
+      "title": "INT-01 API product to UI search and cart to API @smoke @regression",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6229
+        }
+      ]
+    },
+    {
+      "title": "ACC-01 Profile and address match API @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4632
+        }
+      ]
+    },
+    {
+      "title": "AUT-01 Valid login @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3798
+        }
+      ]
+    },
+    {
+      "title": "AUT-06 Protected account redirects anonymous user @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2074
+        }
+      ]
+    },
+    {
+      "title": "CAR-01 Add single product @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4123
+        }
+      ]
+    },
+    {
+      "title": "CAT-01 Product listing and prices @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1683
+        }
+      ]
+    },
+    {
+      "title": "CAT-08 Exact product search @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1978
+        }
+      ]
+    },
+    {
+      "title": "CAT-14 Product details match API @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2440
+        }
+      ]
+    },
+    {
+      "title": "REG-01 Valid unique registration @smoke",
+      "project": "chromium",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5288
+        }
+      ]
+    }
+  ]
+}

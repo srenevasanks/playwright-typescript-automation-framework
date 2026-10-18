@@ -68,8 +68,10 @@ export const test = base.extend<Fixtures>({
     { auto: true },
   ],
   diagnostics: [
-    async ({ page }, use, info) => {
+    async ({ page, browser }, use, info) => {
       const events: string[] = [];
+      const responses: { method: string; path: string; status: number }[] = [];
+      page.on('pageerror', (error) => events.push(`pageerror: ${error.message}`));
       page.on('console', (message) => {
         if (message.type() === 'error') events.push(`console: ${message.text()}`);
       });
@@ -79,10 +81,31 @@ export const test = base.extend<Fixtures>({
         ),
       );
       page.on('response', (response) => {
-        if (response.status() >= 400)
-          events.push(`HTTP ${response.status()} ${new URL(response.url()).pathname}`);
+        const url = new URL(response.url());
+        if (response.status() >= 400) events.push(`HTTP ${response.status()} ${url.pathname}`);
+        if (/^\/(carts|payment|invoices)(\/|$)/.test(url.pathname) && responses.length < 200)
+          responses.push({
+            method: response.request().method(),
+            path: url.pathname,
+            status: response.status(),
+          });
       });
       await use();
+      await info.attach('execution-environment', {
+        body: JSON.stringify({
+          browser: browser.browserType().name(),
+          version: browser.version(),
+          node: process.version,
+          platform: process.platform,
+          project: info.project.name,
+          workerIndex: info.workerIndex,
+          parallelIndex: info.parallelIndex,
+          viewport: page.viewportSize(),
+          headless: info.project.use.headless ?? true,
+          responses,
+        }),
+        contentType: 'application/json',
+      });
       await info.attach('browser-diagnostics', {
         body: events.join('\n') || 'No browser errors observed',
         contentType: 'text/plain',
